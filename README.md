@@ -1,4 +1,4 @@
-# MediaSensei 2.0.0-rc.1
+# MediaSensei 2.0.0
 
 A local-first workspace for importing images, documents, audio/video, and structured data; processing them with persistent jobs; and exporting datasets or searching indexed documents.
 
