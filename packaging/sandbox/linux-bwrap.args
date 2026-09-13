@@ -1,0 +1,6 @@
+--die-with-parent
+--unshare-net
+--ro-bind / /
+--tmpfs /tmp
+--proc /proc
+--dev /dev

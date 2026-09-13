@@ -1,0 +1,9 @@
+;; MediaSensei macOS plugin analyzer sandbox profile.
+(version 1)
+(deny default)
+(allow process*)
+(allow sysctl-read)
+(allow mach-lookup)
+(allow file-read*)
+(allow file-write* (subpath "/private/tmp") (subpath "/tmp"))
+(deny network*)

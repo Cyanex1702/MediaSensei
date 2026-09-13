@@ -1,0 +1,1 @@
+"""MediaSensei API application."""

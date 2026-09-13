@@ -1,0 +1,1579 @@
+{
+  "created_at": "2026-09-10T00:00:00+00:00",
+  "files": [
+    {
+      "executable": false,
+      "path": ".env.example",
+      "sha256": "af6304442e60f615e3835e0fcacb30220b4afea7a51374230d8948011eb98d22",
+      "size": 878
+    },
+    {
+      "executable": false,
+      "path": ".gitattributes",
+      "sha256": "7977a05526a8d27fb80bd52b3f0322cd5b13f18c348779160a1715824bde079b",
+      "size": 138
+    },
+    {
+      "executable": false,
+      "path": ".github/workflows/ci.yml",
+      "sha256": "544bbe0a090cb140a9ec0975595fee2faa2f6f2810d4e602f9926276a0a17210",
+      "size": 1163
+    },
+    {
+      "executable": false,
+      "path": ".gitignore",
+      "sha256": "2fa1fe27e9000dbf715a1b8e6750ea047dddeb967f65321a77c51a9959c6998a",
+      "size": 744
+    },
+    {
+      "executable": false,
+      "path": ".openai/hosting.json",
+      "sha256": "67f5d18994e4c878b864efddb8b3f8493c514fee45f22707db9841208676b9b4",
+      "size": 91
+    },
+    {
+      "executable": false,
+      "path": "AUDIT_REPORT.md",
+      "sha256": "fd06f3a67d7549d64b66ee02c781c62eafd78db6df6ee7ad0ed8685d08cbd1c0",
+      "size": 1114
+    },
+    {
+      "executable": false,
+      "path": "CHANGELOG.md",
+      "sha256": "4ec00201b0730dd638d718fe80f705bd02892399491efd495e15cbdab27e0f93",
+      "size": 5801
+    },
+    {
+      "executable": false,
+      "path": "LICENSE",
+      "sha256": "a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9",
+      "size": 10173
+    },
+    {
+      "executable": false,
+      "path": "MEDIASENSEI_REPAIR_NOTES.md",
+      "sha256": "3ca9afaedf864e2d8b12bff760740ea2a94d7e3868df4e8f695e45a1c871fa93",
+      "size": 179
+    },
+    {
+      "executable": false,
+      "path": "MediaSensei-Windows.bat",
+      "sha256": "e8585a63d6d217b1bc897dbf575e0c4e696321fc1a2795b84bd72bb9dac14add",
+      "size": 395
+    },
+    {
+      "executable": true,
+      "path": "MediaSensei-macOS.command",
+      "sha256": "42d6a3d091a2c57f425bf6a694c33612246ae7516fd49d6ba6fea4fda6d5795f",
+      "size": 93
+    },
+    {
+      "executable": false,
+      "path": "README.md",
+      "sha256": "f6081c7ad097a918563105521da046203af77e8d19ba4797abfeb765f3bd8c47",
+      "size": 14388
+    },
+    {
+      "executable": false,
+      "path": "SECURITY.md",
+      "sha256": "8ee947659bde3eef7ebcb005dea0c0d971b3aa923c4d9402cec7c966f8154d61",
+      "size": 2825
+    },
+    {
+      "executable": false,
+      "path": "Stop-MediaSensei-Windows.bat",
+      "sha256": "15b207d5626210c076ac941dd6e27f00dcd9fb3b46b33d47bb5603ad61ef9b96",
+      "size": 393
+    },
+    {
+      "executable": false,
+      "path": "Update-MediaSensei-Windows.bat",
+      "sha256": "8d2bc373c0517e76ae7f205e10c0de90a2851734c8cce05a01493831f8963582",
+      "size": 397
+    },
+    {
+      "executable": false,
+      "path": "app/globals.css",
+      "sha256": "bf97c23e00132309dabf1855669ff2f846ae445effc72362b80059ce22ad7ee2",
+      "size": 27988
+    },
+    {
+      "executable": false,
+      "path": "app/layout.tsx",
+      "sha256": "e1c5d98a3738b8906a68526affe8fb351bfdd5abd3872a63236ede5eac42edcf",
+      "size": 1537
+    },
+    {
+      "executable": false,
+      "path": "app/page.tsx",
+      "sha256": "b00f3dfb40700bfd60309b01134189982a50673ef373b5e6deb0434ba23e5df1",
+      "size": 124
+    },
+    {
+      "executable": false,
+      "path": "apps/api/__init__.py",
+      "sha256": "eea62f7219561c8778b46a726aa907e9fc2d3565ab0c17e3b6778fc984e82a26",
+      "size": 36
+    },
+    {
+      "executable": false,
+      "path": "apps/api/config.py",
+      "sha256": "9f88b22f6d820ace8fab5f8f01ebd6cceb151557681984243c2dac234f08a7d8",
+      "size": 711
+    },
+    {
+      "executable": false,
+      "path": "apps/api/integrations.py",
+      "sha256": "d5b73a7b10ba636bd64efe7a6f6e10d8e5d83d6407a2094d7156d35f5b60c21c",
+      "size": 4403
+    },
+    {
+      "executable": false,
+      "path": "apps/api/lab.py",
+      "sha256": "38d5e5c3231e9013336952e7005cac901fe51bcac924ef0abb518706f67ee7f9",
+      "size": 12129
+    },
+    {
+      "executable": false,
+      "path": "apps/api/main.py",
+      "sha256": "5788f12133f0fea70d4c2e22daae74894e543a273d81e7324fde553447109fa9",
+      "size": 78499
+    },
+    {
+      "executable": false,
+      "path": "apps/api/middleware.py",
+      "sha256": "cef4a85a092087b4a310465364eb68e27e7d7db80fb0d65c2e1d22ecc598a2e9",
+      "size": 1886
+    },
+    {
+      "executable": false,
+      "path": "apps/api/multimodal.py",
+      "sha256": "36e9277b868405ce983a3688aa480781e268ec43f281b83fe45622ad557aeeec",
+      "size": 9733
+    },
+    {
+      "executable": false,
+      "path": "apps/api/uploads.py",
+      "sha256": "cd7854ee1f45fc2057207973d683574ece02fa983c2a9124d70e973d0ab0b42e",
+      "size": 4650
+    },
+    {
+      "executable": false,
+      "path": "components.json",
+      "sha256": "9928283696d86836422959a2c520df83a718d31ffbcab533a14ca8dca2c8d475",
+      "size": 516
+    },
+    {
+      "executable": false,
+      "path": "components/mediasensei-app.tsx",
+      "sha256": "efcac8174a46d05d3f76694f8cbc622467b34978abde240c7152e621b65be42d",
+      "size": 49537
+    },
+    {
+      "executable": false,
+      "path": "components/ui/accordion.tsx",
+      "sha256": "33e1c60ba503f4eb36f9a8b1f68b236174b11656d8efea6bac65abddda2f9019",
+      "size": 2664
+    },
+    {
+      "executable": false,
+      "path": "components/ui/alert-dialog.tsx",
+      "sha256": "ed0f1fc432bca4c72f9dd8741ae2268a00d2d3429ff1149bf463c4271b13d8e9",
+      "size": 5301
+    },
+    {
+      "executable": false,
+      "path": "components/ui/alert.tsx",
+      "sha256": "e760c470414c9e617d7292094146d906352fee3b1526b790a611d4a118e79196",
+      "size": 2060
+    },
+    {
+      "executable": false,
+      "path": "components/ui/aspect-ratio.tsx",
+      "sha256": "b7fb499905e441a0602392ce118828425ad059079060109694d01f9fac00ad20",
+      "size": 406
+    },
+    {
+      "executable": false,
+      "path": "components/ui/attachment.tsx",
+      "sha256": "dcb9e899f1322158f016d75c400fa8cce9b797ea49bec65528bac686cee2ec5c",
+      "size": 6132
+    },
+    {
+      "executable": false,
+      "path": "components/ui/avatar.tsx",
+      "sha256": "342f32b683937b826cdff2999d5e3057836d459aa43eadb0c3538b818d195b9a",
+      "size": 3056
+    },
+    {
+      "executable": false,
+      "path": "components/ui/badge.tsx",
+      "sha256": "5706189b86e8670499fb33f37147dd6f65c39d59eef5211e34157f2952c35e32",
+      "size": 1934
+    },
+    {
+      "executable": false,
+      "path": "components/ui/breadcrumb.tsx",
+      "sha256": "b28b76d6f8d0feafbbeff2220cf83f9a6b03d8c81f0145b3af4c7d19933ab2c0",
+      "size": 2602
+    },
+    {
+      "executable": false,
+      "path": "components/ui/bubble.tsx",
+      "sha256": "dfb9f52ae3b89e4a419b336c3893ab6fb658fc324fb402759d878d54e3b2db5a",
+      "size": 4828
+    },
+    {
+      "executable": false,
+      "path": "components/ui/button-group.tsx",
+      "sha256": "79ad8fb6644a775cc49131c1aa737ca26cae6a563beec0fa52ef6e8d85202fab",
+      "size": 2494
+    },
+    {
+      "executable": false,
+      "path": "components/ui/button.tsx",
+      "sha256": "081d2a1cb4f3aec636a6894d9eff4e90d476d5db85b82d0399c1f4d18517112e",
+      "size": 3247
+    },
+    {
+      "executable": false,
+      "path": "components/ui/calendar.tsx",
+      "sha256": "e7bc682eff8f2215e6b0aab40d1afb7ee927c5f5bef348ccff207631b9261658",
+      "size": 8503
+    },
+    {
+      "executable": false,
+      "path": "components/ui/card.tsx",
+      "sha256": "625fce5e16577a45108a86d7afcd70b8931cb2032abe0d6a3faf1010f666d672",
+      "size": 2645
+    },
+    {
+      "executable": false,
+      "path": "components/ui/carousel.tsx",
+      "sha256": "7444126492d4e0b85b1270f0d83a0955350fa95b3d3fb7b88edc2a5c2b4e5d14",
+      "size": 5727
+    },
+    {
+      "executable": false,
+      "path": "components/ui/chart.tsx",
+      "sha256": "56ab0e0b41f0cc7902414e046ea4f710bdbf0b756028672ea8c7e5137a278f2b",
+      "size": 10581
+    },
+    {
+      "executable": false,
+      "path": "components/ui/checkbox.tsx",
+      "sha256": "56b2869e5478f38238e6a3d8aefabfbe8af565b38b2ffad06466487b3eacf154",
+      "size": 1538
+    },
+    {
+      "executable": false,
+      "path": "components/ui/collapsible.tsx",
+      "sha256": "3fdf7ef1ca89c4d85de5ecbb25813d0f572003a53b021baf43c5f3523e48ec97",
+      "size": 664
+    },
+    {
+      "executable": false,
+      "path": "components/ui/combobox.tsx",
+      "sha256": "282041e2e8c52cc12e7bbc717bbd3f8c9c5ba18e7fa75b97053bc79687e1181e",
+      "size": 9135
+    },
+    {
+      "executable": false,
+      "path": "components/ui/command.tsx",
+      "sha256": "9c1eae65aa105935a34c6b736f673b71a2ef939dde53dce29d986221edbf1f9f",
+      "size": 5029
+    },
+    {
+      "executable": false,
+      "path": "components/ui/context-menu.tsx",
+      "sha256": "05c3646b452f5e3b9eb952eeba3d90657606d2b0875cb77652cdb5eadba0eb5c",
+      "size": 8166
+    },
+    {
+      "executable": false,
+      "path": "components/ui/dialog.tsx",
+      "sha256": "8bc85def62538b4e62e8530c6b0ba167a192c38519c05f104bf6e10de73b811f",
+      "size": 4087
+    },
+    {
+      "executable": false,
+      "path": "components/ui/direction.tsx",
+      "sha256": "2dea8a95accb1723db2454ccc858697d5b1f1454568cf4da5e8fcbd0cf7cc1ee",
+      "size": 105
+    },
+    {
+      "executable": false,
+      "path": "components/ui/drawer.tsx",
+      "sha256": "b7ac53d0e5d1fed25fc3f2ac5f5a36e247ca684c677ac376829fa8a7c039b79e",
+      "size": 11396
+    },
+    {
+      "executable": false,
+      "path": "components/ui/dropdown-menu.tsx",
+      "sha256": "efc088f3d79f64cf96e222701ae23dcf385b53947b3cd57ffb7be6f5dadcbfe2",
+      "size": 8809
+    },
+    {
+      "executable": false,
+      "path": "components/ui/empty.tsx",
+      "sha256": "bf54bac4881b79f6a53f55e70c18640f58a058add88aed763c71be35c4f64f59",
+      "size": 2415
+    },
+    {
+      "executable": false,
+      "path": "components/ui/field.tsx",
+      "sha256": "79023ca89aae39f9cffa83a9483c9c672099b4547cc821486283db61c6ae9327",
+      "size": 6303
+    },
+    {
+      "executable": false,
+      "path": "components/ui/hover-card.tsx",
+      "sha256": "d8cb7270c5893213fc00b5f270f9bc461e2d7ce5b81f77b8778253a1aeda6a2c",
+      "size": 1863
+    },
+    {
+      "executable": false,
+      "path": "components/ui/input-group.tsx",
+      "sha256": "2e65ddecb4401220be374cc6cfc42344538266cafeb2e590b3c760c7ed6b490a",
+      "size": 5289
+    },
+    {
+      "executable": false,
+      "path": "components/ui/input-otp.tsx",
+      "sha256": "867f568259caac95f682d128d72e681b3fe7c31701a396eacc9284401d917a6a",
+      "size": 2558
+    },
+    {
+      "executable": false,
+      "path": "components/ui/input.tsx",
+      "sha256": "6763c86c34c1c07826386d376f5da8fe2e41585bff3615716d5da88915e088d8",
+      "size": 1046
+    },
+    {
+      "executable": false,
+      "path": "components/ui/item.tsx",
+      "sha256": "9c5e45e6c4aae5b9c4c1304e1f1208d32681ab616a6e0de9de6e0d6b22690592",
+      "size": 4888
+    },
+    {
+      "executable": false,
+      "path": "components/ui/kbd.tsx",
+      "sha256": "bdfb38a4f7b9b604e196b5cee0d86f12311dae72946f0dbf5928c8ad0638178f",
+      "size": 842
+    },
+    {
+      "executable": false,
+      "path": "components/ui/label.tsx",
+      "sha256": "e4a6fb662c44a44c468d16d79d02b3a3e5bf7b77bd50aef1e586c4d9613df0f6",
+      "size": 524
+    },
+    {
+      "executable": false,
+      "path": "components/ui/marker.tsx",
+      "sha256": "cd1e872384cf5001e48b4dc3cc2bb011eba9700561d41c83a89e872b60baf175",
+      "size": 1962
+    },
+    {
+      "executable": false,
+      "path": "components/ui/menubar.tsx",
+      "sha256": "a3715f8e8b78261f5784929c532e100759c58e831c91e842438730797bc9a124",
+      "size": 8315
+    },
+    {
+      "executable": false,
+      "path": "components/ui/message-scroller.tsx",
+      "sha256": "9512c586d1b0885cf3ae4f1c3dd4281cbdfec7428fe98ff48a66b4ba2a7319f4",
+      "size": 4070
+    },
+    {
+      "executable": false,
+      "path": "components/ui/message.tsx",
+      "sha256": "2fedcc64ed8563a44f6697615e77574d96f819fe6e5e2fa8a555e30f8ed6bbd7",
+      "size": 2246
+    },
+    {
+      "executable": false,
+      "path": "components/ui/native-select.tsx",
+      "sha256": "3aafb74b98c039dae4eb2c64c47ec6f5d61fdc888c057de47550346f702f434b",
+      "size": 2133
+    },
+    {
+      "executable": false,
+      "path": "components/ui/navigation-menu.tsx",
+      "sha256": "c8e64bf5241145b512ae18f1062da8275691edf927736496a3860bec76ad6fa1",
+      "size": 7436
+    },
+    {
+      "executable": false,
+      "path": "components/ui/pagination.tsx",
+      "sha256": "1f3c1713e8824cca7c3c0edacf9da7b0114bfda58640771b8fe0bc6179b370ce",
+      "size": 2928
+    },
+    {
+      "executable": false,
+      "path": "components/ui/popover.tsx",
+      "sha256": "7376624438588e2d64b6e0c5cdf82cbc5fd4530bbcf1f0235c5f3ee08d12e877",
+      "size": 2586
+    },
+    {
+      "executable": false,
+      "path": "components/ui/progress.tsx",
+      "sha256": "0d8ddec9731940e104b851cf3ac67d2fa8589b289824317a9e8f326e090ba65a",
+      "size": 1751
+    },
+    {
+      "executable": false,
+      "path": "components/ui/radio-group.tsx",
+      "sha256": "43f2d6c2f5bdd4a26c57d93e6f141be20472f9bb8777d9a0d61cd8a5e281a999",
+      "size": 1843
+    },
+    {
+      "executable": false,
+      "path": "components/ui/resizable.tsx",
+      "sha256": "ea7b85817d4dc70866e0bcf15264e7e1bd7e1893eb4404261fbc23a4d6ff9029",
+      "size": 1681
+    },
+    {
+      "executable": false,
+      "path": "components/ui/scroll-area.tsx",
+      "sha256": "730c4cc49f8f1b705eb1389cd32c774056a0a2a7a48a9b092cbe44c608be3a0b",
+      "size": 1632
+    },
+    {
+      "executable": false,
+      "path": "components/ui/select.tsx",
+      "sha256": "45489c502a21fdd5271481d64ad8f762181c9653d8d26bdc6f75450b78c3c852",
+      "size": 6700
+    },
+    {
+      "executable": false,
+      "path": "components/ui/separator.tsx",
+      "sha256": "92ad5065f03d7edc98f367e729f3ec84ece1d99ee8cd0d3a8137f266d4ab3d8a",
+      "size": 551
+    },
+    {
+      "executable": false,
+      "path": "components/ui/sheet.tsx",
+      "sha256": "adb432b6f9d7a4733caa45ba8bf510a8a7ff0f6d0dd3aa1f013959fb61268234",
+      "size": 4446
+    },
+    {
+      "executable": false,
+      "path": "components/ui/sidebar.tsx",
+      "sha256": "aa3322ca63f098aa1d2abf750f9d097da07362fce25939357f2cefc9b6a03988",
+      "size": 21779
+    },
+    {
+      "executable": false,
+      "path": "components/ui/skeleton.tsx",
+      "sha256": "4c342102b2bbf5bd8c04fa151fe5c13c42faee2f9587a3586c27322020ca35d1",
+      "size": 278
+    },
+    {
+      "executable": false,
+      "path": "components/ui/slider.tsx",
+      "sha256": "af657e73d672f4dd205f19abf151d21a172cf36abfdca49fd7014a20e12367a9",
+      "size": 1879
+    },
+    {
+      "executable": false,
+      "path": "components/ui/spinner.tsx",
+      "sha256": "8ddbb330e5564a1f53026da36c2322ed4b027687e91a88f63348ab10f26ae0cb",
+      "size": 360
+    },
+    {
+      "executable": false,
+      "path": "components/ui/switch.tsx",
+      "sha256": "04b085443a1c6a72d408e6eb7dd45df881ca27814415b81b39f614806b52c8fc",
+      "size": 1818
+    },
+    {
+      "executable": false,
+      "path": "components/ui/table.tsx",
+      "sha256": "88f2ba7877eea7f34a5da18b7fa096eb2c7bed602677ce54f5494b494c5afc2e",
+      "size": 2418
+    },
+    {
+      "executable": false,
+      "path": "components/ui/tabs.tsx",
+      "sha256": "dd914d769bc223b5d5ea56839a7752e534eb475f8d2897d5675606c368bbca1f",
+      "size": 3510
+    },
+    {
+      "executable": false,
+      "path": "components/ui/textarea.tsx",
+      "sha256": "7ae7f0f5d907be24658652c771fee1685193102bf3200aafbf578d144d379fbf",
+      "size": 847
+    },
+    {
+      "executable": false,
+      "path": "components/ui/toast.tsx",
+      "sha256": "9126b09f47f0b117bf748cf19aaa4987a1f72d0813d10bfc4b4b0128e6439e48",
+      "size": 7353
+    },
+    {
+      "executable": false,
+      "path": "components/ui/toggle-group.tsx",
+      "sha256": "9b006523be0fe3230cd75f7adf78a501829d594fd3506c56c55bb38211ff1850",
+      "size": 3201
+    },
+    {
+      "executable": false,
+      "path": "components/ui/toggle.tsx",
+      "sha256": "6bf41d6f6ffe602c3e28274a82ac029e6ee1331ba3c670a6d814048e1823cc28",
+      "size": 1770
+    },
+    {
+      "executable": false,
+      "path": "components/ui/tooltip.tsx",
+      "sha256": "b86e51969931c3d62e88d0bdacd1cd8219105dc6d6b6a588a80011bf92e987cd",
+      "size": 2855
+    },
+    {
+      "executable": false,
+      "path": "components/workbench/advanced-tools.tsx",
+      "sha256": "fb030b719aad962787282fee107c384861247113fd0d241b268adcb01a92503b",
+      "size": 24823
+    },
+    {
+      "executable": false,
+      "path": "components/workbench/asset-lab.tsx",
+      "sha256": "329b4bcbb9a608b492d817fb5c6d1bcbf2faa52bf8aeb49d85e634888f9da41c",
+      "size": 31146
+    },
+    {
+      "executable": false,
+      "path": "components/workbench/command-center.tsx",
+      "sha256": "6d6b5175030b4eab4fe6ef179959c0ba3b98c41672738a6eb249e495fb424664",
+      "size": 10132
+    },
+    {
+      "executable": false,
+      "path": "components/workbench/data-lab.tsx",
+      "sha256": "5b10ef62b491dc1c95224f99c86645b1895879177a94940176101c480a7a6279",
+      "size": 36707
+    },
+    {
+      "executable": false,
+      "path": "components/workbench/data-views.tsx",
+      "sha256": "149eab560ec7e76ebcf1ac01f36a5942b04a5a511444d70d3d017d233c016740",
+      "size": 14403
+    },
+    {
+      "executable": false,
+      "path": "components/workbench/integrations.tsx",
+      "sha256": "b189778f7ce782c5b50f244797dc9cf0e195127dee91f07bc73e440e57327a0a",
+      "size": 15874
+    },
+    {
+      "executable": false,
+      "path": "components/workbench/library-inspector.tsx",
+      "sha256": "3ade385367b957c0a72d44a7fd9432399944880f8008b36f6c45bef3d3eb0a09",
+      "size": 2891
+    },
+    {
+      "executable": false,
+      "path": "components/workbench/sources.tsx",
+      "sha256": "be6b73c5387c42f4d9c6c681f3194c0e6d81846a0895b2f234878ed75a872cba",
+      "size": 18382
+    },
+    {
+      "executable": false,
+      "path": "components/workbench/theme-picker.tsx",
+      "sha256": "9326e3287ad3f1d8d3aadab539a398ab51f8e625edb57008bd91241c3dafe266",
+      "size": 1056
+    },
+    {
+      "executable": false,
+      "path": "components/workbench/visualization-report.tsx",
+      "sha256": "448ad690aebe08ac8ad070d8897471617869e49eca696211c0a43de3c6dd534b",
+      "size": 2091
+    },
+    {
+      "executable": false,
+      "path": "db/env.d.ts",
+      "sha256": "1723a1488b36046bd2b41abeb0f928f50cba17c6702fca09ba65de3f17cdd258",
+      "size": 75
+    },
+    {
+      "executable": false,
+      "path": "db/index.ts",
+      "sha256": "991de9c107b00a37ad6540bf3540e2efe1eb2c30a04203daf4bd36f83f62d230",
+      "size": 424
+    },
+    {
+      "executable": false,
+      "path": "db/schema.ts",
+      "sha256": "953a4627c11ebecf9a6edd6da89b41acf211939a662e6c820e2416c5dcde9607",
+      "size": 28056
+    },
+    {
+      "executable": false,
+      "path": "docs/2.0-status.md",
+      "sha256": "7ac5066612ad69bbcd0ae1f4c0718ecbd5142c4c5e82a3b5616a6ce2c20faca6",
+      "size": 1190
+    },
+    {
+      "executable": false,
+      "path": "docs/adr-0001-operations.md",
+      "sha256": "fe067dc2a03814df8b3b0dc05d875330e119a2dabb8a233d56256f974f4fcbdf",
+      "size": 1654
+    },
+    {
+      "executable": false,
+      "path": "docs/adr-0002-batch-one.md",
+      "sha256": "caa763fcc32dc205261eff900f30097fb557bb0ea94a2b3542da60afd8a9fa0d",
+      "size": 2894
+    },
+    {
+      "executable": false,
+      "path": "docs/adr-0003-batch-two.md",
+      "sha256": "acab696d0fd911086c61f8fd70340bcfa6a12b94ce7aa1ffbf80f56cb31ce6c7",
+      "size": 3229
+    },
+    {
+      "executable": false,
+      "path": "docs/adr-0004-batch-three.md",
+      "sha256": "4657a2f397a1183032f02757b0989a08e70262c3309e37304d89bb4bc2e4b03e",
+      "size": 1847
+    },
+    {
+      "executable": false,
+      "path": "docs/adr-0005-release-certification.md",
+      "sha256": "bbb0c02757ca1c8edbb7effbed36bcc7a9c8ae92fa23ea179b55d1598c42c667",
+      "size": 1423
+    },
+    {
+      "executable": false,
+      "path": "docs/adr/001-content-addressed-storage.md",
+      "sha256": "d3ee0a04b3f87a0d6c786115910cb93bd638d2f28c89f1090f70a334a65b7d72",
+      "size": 410
+    },
+    {
+      "executable": false,
+      "path": "docs/adr/002-sqlite-duckdb.md",
+      "sha256": "b96aa0fa4cbe20da719a77f69ed21706bb2d7ef8df02d0d79e5cce7860779f52",
+      "size": 1026
+    },
+    {
+      "executable": false,
+      "path": "docs/adr/003-plugin-discovery.md",
+      "sha256": "b7fb7fd236f56e7d6e8b422e0f0fa07a9400f3ff8299f45e0cfb0caad4af356e",
+      "size": 400
+    },
+    {
+      "executable": false,
+      "path": "docs/adr/004-local-worker.md",
+      "sha256": "a922865aa27e8118dc8f06885413375d4d3c9901a5d058723c395903a6845963",
+      "size": 362
+    },
+    {
+      "executable": false,
+      "path": "docs/adr/005-core-identities.md",
+      "sha256": "c54d8df1c16b7347d67270eb53eb9b4a630c7df26d8eb24190dc6501edb3ab29",
+      "size": 364
+    },
+    {
+      "executable": false,
+      "path": "docs/adr/006-leased-jobs-and-cache.md",
+      "sha256": "2407ec3bf01b9f84ff95c367e85ae468241d8a74bae684982a1da4a03a1b121c",
+      "size": 680
+    },
+    {
+      "executable": false,
+      "path": "docs/adr/007-content-keyed-image-analysis.md",
+      "sha256": "9ce25d7624150da0f32ecce2b384971e106d8d67e94897b15f62c054187f89d3",
+      "size": 734
+    },
+    {
+      "executable": false,
+      "path": "docs/adr/008-shell-free-ffmpeg-boundary.md",
+      "sha256": "f2adb1a5c9593fa682f7ac86c6e6ae45bfdee328ff7bb08d48598972c84d9601",
+      "size": 895
+    },
+    {
+      "executable": false,
+      "path": "docs/adr/009-offline-contentunit-vector-index.md",
+      "sha256": "1f881e370c5ac7a426613cadb379d8f0d74c2d3d900b79e6e647cf4b0bfa2ade",
+      "size": 1018
+    },
+    {
+      "executable": false,
+      "path": "docs/adr/010-revision-pinned-dataset-providers.md",
+      "sha256": "34b3651502e5bf1cc9e97cfe9d320179a63e8348bf7fe9174ff403c0ced0832e",
+      "size": 1310
+    },
+    {
+      "executable": false,
+      "path": "docs/adr/011-separate-acquisition-planning-discovery-and-bytes.md",
+      "sha256": "8de868d57c68bfec8d7f6bc0e9ad7eef44dfe8c2622f3b48f76dbf2e57126771",
+      "size": 1089
+    },
+    {
+      "executable": false,
+      "path": "docs/adr/012-target-yield-and-explainable-acquisition.md",
+      "sha256": "413405a2da2e0b9de48a9eaeffd3e1426a69c2e3c00c1912a17a4de64ae1d4fc",
+      "size": 1102
+    },
+    {
+      "executable": false,
+      "path": "docs/adr/013-finalize-plugin-api-1-5.md",
+      "sha256": "1fd4f7cd17248ab5fd95157b5ee5ee80e631d3306db1f5dd1d0b1303ddc7354f",
+      "size": 1636
+    },
+    {
+      "executable": false,
+      "path": "docs/adr/014-harden-plugin-execution.md",
+      "sha256": "016d167c6fcb3bb4d35ffbf3e168f9064df1b54abd1dfd87071c33fe1d9c12e5",
+      "size": 885
+    },
+    {
+      "executable": false,
+      "path": "docs/adr/015-reproducible-release-artifacts.md",
+      "sha256": "c9119a8360b636714bb5e4f5f61e74e69ee2a7cf46208bbe7f51d1b679ddfb71",
+      "size": 1193
+    },
+    {
+      "executable": false,
+      "path": "docs/architecture/dataset-providers.md",
+      "sha256": "244709e31801aa9ff28cc2e20590669485c3f7a5eb2ce4fa2119f90d053eb230",
+      "size": 2133
+    },
+    {
+      "executable": false,
+      "path": "docs/architecture/document-pipeline.md",
+      "sha256": "70b3d85cf7170d41507bf4689269b61f332b171c65a6b65a1174f6f3760fb092",
+      "size": 2208
+    },
+    {
+      "executable": false,
+      "path": "docs/architecture/domain-model.md",
+      "sha256": "ac08926efbc2ec20b6bbf7fc55e0d24a942056865e4a5ed29cdc6186b1396b98",
+      "size": 1824
+    },
+    {
+      "executable": false,
+      "path": "docs/architecture/image-pipeline.md",
+      "sha256": "056abdaa503235527e66881e17ad95fe985bf51a7ba8f465c1dee793b7a312bc",
+      "size": 1849
+    },
+    {
+      "executable": false,
+      "path": "docs/architecture/intelligent-acquisition.md",
+      "sha256": "5836bf5df792551fa50c8ab54f8e89d496c9dcd3b1ce2f04c9e1b52539c9baa3",
+      "size": 2784
+    },
+    {
+      "executable": false,
+      "path": "docs/architecture/media-pipeline.md",
+      "sha256": "34a65feda928826996cd44c9539ced55ccbda5c4cb89418e1426bb654577d6f6",
+      "size": 1560
+    },
+    {
+      "executable": false,
+      "path": "docs/architecture/overview.md",
+      "sha256": "e34ed34d8bb4425a08a77015d6192fafcd5351f7960f89df87f65e13824edaed",
+      "size": 2832
+    },
+    {
+      "executable": false,
+      "path": "docs/architecture/pipeline-jobs.md",
+      "sha256": "af15a1d5d226a0d2c9e44d23dbc4ab31dc401e1b661eb3b9f1cb93c2ac44e637",
+      "size": 2967
+    },
+    {
+      "executable": false,
+      "path": "docs/architecture/plugin-runtime.md",
+      "sha256": "ea30f7049443a9ea52e784dda517c8fc97dc50ba49d87d66b946dbde24dc802d",
+      "size": 2701
+    },
+    {
+      "executable": false,
+      "path": "docs/audit-1.0.2.md",
+      "sha256": "f03a85725272442239333cebc941d9b9c7a09a9c2a61bca1232541fd2ea3ec7a",
+      "size": 11833
+    },
+    {
+      "executable": false,
+      "path": "docs/batch-1.md",
+      "sha256": "503eeb47b843082d75c598d5e86fa80c22c1efae8e710710f4d03795727ab83b",
+      "size": 3585
+    },
+    {
+      "executable": false,
+      "path": "docs/batch-2.md",
+      "sha256": "928f9ad03806eadee6ac810810748dc3d0447155fc43d6b325083b2cb8ed8eb6",
+      "size": 2478
+    },
+    {
+      "executable": false,
+      "path": "docs/batch-3.md",
+      "sha256": "a1a5be0bb28659c3a7d30988bdf64b695f1d8b850145114bac310d8bd27f3376",
+      "size": 4600
+    },
+    {
+      "executable": false,
+      "path": "docs/batch-4.md",
+      "sha256": "bf04f73a3a2ff0c1c4f15dbd18487e01f669603a47e40663e00e6d76fd658ec7",
+      "size": 4733
+    },
+    {
+      "executable": false,
+      "path": "docs/integrations.md",
+      "sha256": "a801331482899a5433ca4fc409aa2453bd7b1801a2536a1b183e1c76b9e75932",
+      "size": 4426
+    },
+    {
+      "executable": false,
+      "path": "docs/interfaces.md",
+      "sha256": "0d6582a7834174c0176cb55a3511632dfdccf79a6734e3320f1dbcd9d4bfe52a",
+      "size": 6315
+    },
+    {
+      "executable": false,
+      "path": "docs/media-workbench.md",
+      "sha256": "8468a616117f8d429d0eccc7bccbf52a4bed17127dd674b8ab67442e5f038273",
+      "size": 3173
+    },
+    {
+      "executable": false,
+      "path": "docs/milestones/milestone-8-intelligent-acquisition.md",
+      "sha256": "1245fe156f5759ce9233802c09d32b1c6e67b4f50db1a8a33befc5eeffcaf23e",
+      "size": 48025
+    },
+    {
+      "executable": false,
+      "path": "docs/plugin-contract-report.md",
+      "sha256": "825aaac042efcacc370b69c3c910854d52130162d161ffccfafef0c50a692a29",
+      "size": 1932
+    },
+    {
+      "executable": false,
+      "path": "docs/plugins.md",
+      "sha256": "c780315ed2986264dba9d7be8ec35cd664edd6cce15b1b0e75a79515fa6de09f",
+      "size": 2232
+    },
+    {
+      "executable": false,
+      "path": "docs/releasing.md",
+      "sha256": "a4a7c403b22640e59115e618244b9bcf312cc0b22df8b91de5d1145539025324",
+      "size": 3390
+    },
+    {
+      "executable": false,
+      "path": "docs/roadmap.md",
+      "sha256": "b933b848bdd41dc72eaca5b7f08c84976a38390355af432a3a6f8530260ec2cc",
+      "size": 5842
+    },
+    {
+      "executable": false,
+      "path": "docs/user-guide/intelligent-acquisition.md",
+      "sha256": "5c79f76d12bc54ef752df0f913883ed671ccd596987bf216474f0659ccd260db",
+      "size": 2133
+    },
+    {
+      "executable": false,
+      "path": "docs/user-guide/workflows.md",
+      "sha256": "1dc82deef1aef8c885aa125937989bec860524c6e59763738084b76ebec445b5",
+      "size": 5223
+    },
+    {
+      "executable": false,
+      "path": "drizzle.config.ts",
+      "sha256": "9a41cce699b66a99925d6cf0d0e8a50802a420138a71b41959bb823e0402ff86",
+      "size": 148
+    },
+    {
+      "executable": false,
+      "path": "drizzle/0000_lyrical_mephistopheles.sql",
+      "sha256": "2bd02f98b429b8088558ae4b256ef8e2d5cd407f5c0b948f62c6f8259253f678",
+      "size": 3174
+    },
+    {
+      "executable": false,
+      "path": "drizzle/0001_careful_grim_reaper.sql",
+      "sha256": "2d9a7dd2fe3f78ab1384c6e36aab3f3c16741d3e64689344be38915243a0e59c",
+      "size": 3479
+    },
+    {
+      "executable": false,
+      "path": "drizzle/0002_youthful_hemingway.sql",
+      "sha256": "7133f2b86690bdcd1d88571c79024f100f3b2d4b422a052b7cb804845acda688",
+      "size": 4299
+    },
+    {
+      "executable": false,
+      "path": "drizzle/0003_sour_dust.sql",
+      "sha256": "59f9c24d40271932c87cad8eab6cf91919fa677319d5b4cbde67f3120a8e6001",
+      "size": 2340
+    },
+    {
+      "executable": false,
+      "path": "drizzle/0004_fearless_fantastic_four.sql",
+      "sha256": "20c366fac7b9a7cd138f3d4bfdc3c28eb691cdc83ce2b2c4b370718808a80c0b",
+      "size": 1283
+    },
+    {
+      "executable": false,
+      "path": "drizzle/0005_cool_bloodstrike.sql",
+      "sha256": "82f8bbd00757328fa139666c531c6636841c11e238244964a46d8f973b81c3c3",
+      "size": 1857
+    },
+    {
+      "executable": false,
+      "path": "drizzle/0006_fancy_karma.sql",
+      "sha256": "ee202cc569b93eee44b307b9f2d857839393f61c5902f742bbaceb1e7034c5b2",
+      "size": 2205
+    },
+    {
+      "executable": false,
+      "path": "drizzle/0007_foamy_morgan_stark.sql",
+      "sha256": "417e9e08e93c73a3d67fca63684e6b522c7179c3cfa2768238b4a085a08cfb92",
+      "size": 5627
+    },
+    {
+      "executable": false,
+      "path": "drizzle/meta/0000_snapshot.json",
+      "sha256": "085a5489a255c9c10a61b241a5d3adeaf2304ec593a24e332041de981dfa328e",
+      "size": 14486
+    },
+    {
+      "executable": false,
+      "path": "drizzle/meta/0001_snapshot.json",
+      "sha256": "67847c123a46eae6e197b8270d661ab5e2e7693c578c138bf30c2d2873e2b859",
+      "size": 25725
+    },
+    {
+      "executable": false,
+      "path": "drizzle/meta/0002_snapshot.json",
+      "sha256": "457ce96114b5baf6ea582dbe386da2f2f8230dd244f249b8059c1281654781d2",
+      "size": 44441
+    },
+    {
+      "executable": false,
+      "path": "drizzle/meta/0003_snapshot.json",
+      "sha256": "7008f0a98caf54a53ee1ec6629eeb030b0343c0119b603ccb321ad0a31fee0b9",
+      "size": 54170
+    },
+    {
+      "executable": false,
+      "path": "drizzle/meta/0004_snapshot.json",
+      "sha256": "c0a7715fcb93de6819dbbb315abe66bb265b728baba146541c1eb4ddcab61064",
+      "size": 63295
+    },
+    {
+      "executable": false,
+      "path": "drizzle/meta/0005_snapshot.json",
+      "sha256": "dc052036a22d04bfbff8c1582287c22c893eff3538450f1ef81d5e1e801b4dbd",
+      "size": 69369
+    },
+    {
+      "executable": false,
+      "path": "drizzle/meta/0006_snapshot.json",
+      "sha256": "2a2f1e2ac3716fc8f261376e2d6407fb61d2062e0c6c6167b8e506cc9beeace1",
+      "size": 82901
+    },
+    {
+      "executable": false,
+      "path": "drizzle/meta/0007_snapshot.json",
+      "sha256": "530decd54434d59d6ada02a54ef8c2cc7bd7cf952d9304c5f46add15e3f86c92",
+      "size": 108687
+    },
+    {
+      "executable": false,
+      "path": "drizzle/meta/_journal.json",
+      "sha256": "ebc10109e48a32107a4788f169caee1a5ac6b4072dbf32420d76e1dbf893a497",
+      "size": 1222
+    },
+    {
+      "executable": false,
+      "path": "hooks/use-mobile.ts",
+      "sha256": "82bff42ff087bd5dc90a5d17609cc428b8688de92d1333073a839af5ad3c9cbd",
+      "size": 585
+    },
+    {
+      "executable": false,
+      "path": "lib/batch-api.ts",
+      "sha256": "c67e31102995aec30bcdeecd9d53bb95faace14ee25065ec8cf43baffed11c4a",
+      "size": 3194
+    },
+    {
+      "executable": false,
+      "path": "lib/core-api.ts",
+      "sha256": "5d1a19c05bd9b041e6e190137622c003de81688de12cfd89748251146598590b",
+      "size": 9652
+    },
+    {
+      "executable": false,
+      "path": "lib/utils.ts",
+      "sha256": "9304a861c8673bee09e0f12de31773abbde503b02e59dfd74763ddec2e37cf05",
+      "size": 169
+    },
+    {
+      "executable": false,
+      "path": "lib/workbench-api.ts",
+      "sha256": "730f6d04055323079ad41e7738757b5080b5b854216c72cbea1338c7ef35521f",
+      "size": 4474
+    },
+    {
+      "executable": true,
+      "path": "mediasensei-linux.sh",
+      "sha256": "42d6a3d091a2c57f425bf6a694c33612246ae7516fd49d6ba6fea4fda6d5795f",
+      "size": 93
+    },
+    {
+      "executable": false,
+      "path": "next.config.ts",
+      "sha256": "d063bebef3a4878ae82f9f9547c2c9675b8b6945ab23702932dcb63a011a9fc9",
+      "size": 104
+    },
+    {
+      "executable": false,
+      "path": "package-lock.json",
+      "sha256": "8e81cc12fac242218ea867e7f44af84bbe90a1eee91d36165c0e5ec69b074e2b",
+      "size": 412348
+    },
+    {
+      "executable": false,
+      "path": "package.json",
+      "sha256": "822dbcec15a83881570f205bcea968fdccf7b043fe4ee3ad2f765116c2f15e1f",
+      "size": 2302
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/__init__.py",
+      "sha256": "824c9f8bcc9a562e22e608dadbe1e6be81f2ccabb758789303d732402b72f023",
+      "size": 1922
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/asset_operations.py",
+      "sha256": "64aab3801aca579d49ace4cbd3dfffaa61574f15fc227352b184f30ba8ae4f33",
+      "size": 8295
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/batch_definitions.py",
+      "sha256": "f2eb9c88cbf7f570e5f1e5ef59148f5036c71f065e8ac1e363ecd6c00f03ce9d",
+      "size": 5741
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/cli.py",
+      "sha256": "08aa33b5126a01d3ed130164e8bc1d809c77cfb434ee173fd2d888f993701919",
+      "size": 54816
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/discovery.py",
+      "sha256": "6a62d04e94bde2caf876743c2aec7ea094949c473f0cb59a783377466cdd5d80",
+      "size": 10140
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/domain/__init__.py",
+      "sha256": "897b31691c9f413b941d15a38eec88d1e5d4c466db17f33bb4ccf7be44b9f688",
+      "size": 2350
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/domain/acquisition.py",
+      "sha256": "381e489ce6be8c71a543a5fb10d82c8a2ae9c6089206dc31658442ddf283af6c",
+      "size": 8250
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/domain/documents.py",
+      "sha256": "796dc29a3d308ee503d9dc4059ce047677b31957b29fce67ac15457a81ecdfa7",
+      "size": 2469
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/domain/images.py",
+      "sha256": "315c28d98437f68a046516dc453dd8a1d3c51fdb80994d988c9245512ac82278",
+      "size": 1904
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/domain/jobs.py",
+      "sha256": "8ca8837a2575345727dde93ba4cbbc3314268ab87324a3bd86f10499c42279e7",
+      "size": 2834
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/domain/media.py",
+      "sha256": "8218bbd4ed6b06686a1c62d91ba566d8c85cd83f244b38d3e2cb833f90e44f41",
+      "size": 1457
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/domain/models.py",
+      "sha256": "ff9887e12b629d09b58cc9aba0c9bf84782030b0ad6f5ad549ecfe9f47f60cb9",
+      "size": 1398
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/domain/operations.py",
+      "sha256": "6b9e6020de3f161548a8e0860f8cb0c9c7ea034f2596509175c26b396101b1d6",
+      "size": 11542
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/domain/providers.py",
+      "sha256": "fd1b8de3d166db7b65335ccefec1695a58d4eef4c1b33ff2aebb629affd9480d",
+      "size": 3899
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/domain/tabular.py",
+      "sha256": "8d4262d8ef95f1031fca103942f539f943be67941680620ad7c798de3a0301e5",
+      "size": 2330
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/domain/tabular_definitions.py",
+      "sha256": "3234c229d534f570757d8646ec97dfa7dded3851da4fea9aa257a4fa19d4beed",
+      "size": 10783
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/infrastructure/__init__.py",
+      "sha256": "9a16bb073478424962ddb40c7013262920a9f29675b40f192ddd0a9a0321b1f6",
+      "size": 73
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/infrastructure/acquisition.py",
+      "sha256": "790f239af3c329c24655f1677f0c4a6226dfe5a37d77aacd66be362d1a29675f",
+      "size": 21499
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/infrastructure/acquisition_discovery.py",
+      "sha256": "34435584d4a6a5249097e62e2f4b75ea4e8fd401b5c234c0738c78a7dcf37e7a",
+      "size": 16636
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/infrastructure/acquisition_planning.py",
+      "sha256": "637a8ae1519da8c00ea8a8ef7d77818e62226996ae89d187f62402fb9e91c4bc",
+      "size": 13728
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/infrastructure/acquisition_repository.py",
+      "sha256": "c4c8500273604d6807b286566b5bdc41b72be1016eaab2f60749faee31fe2ef3",
+      "size": 30748
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/infrastructure/catalog.py",
+      "sha256": "a97a8114fb5c6a63dc8bada9e888ed560bd6078bb15291ac8ac1ec07dcc035ca",
+      "size": 70657
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/infrastructure/datasets.py",
+      "sha256": "cb1ac0a934a2285cc0bdc7d3807dddd8098258bd1423a2b8495aba548bb0785d",
+      "size": 14332
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/infrastructure/documents.py",
+      "sha256": "58e18c87c69ffaf8d11d7c330f767b9836b9d0edea2e3a02f3bf26f7cbd20d3e",
+      "size": 24421
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/infrastructure/images.py",
+      "sha256": "3f000b0add56a50abdc125fc8f34232f634cadd6c028f618366b3927b1f1da13",
+      "size": 16179
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/infrastructure/jobs.py",
+      "sha256": "957b336eeafa0f795a7e73e1c650d319f470d48653d281c71da796516f980620",
+      "size": 27040
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/infrastructure/media.py",
+      "sha256": "9eead87a55a161bbff0dce8831a905f3f954d5db95352b6b631afc33c65fcf4d",
+      "size": 25433
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/infrastructure/plugin_host.py",
+      "sha256": "8e8048c3ebacc312042a3545c26b83f9a15944b0cc5fa7b0f3272278126ca5b0",
+      "size": 2831
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/infrastructure/plugins.py",
+      "sha256": "7b3bd01f7050da0ccc77e22bf673bda91721c3e10d36a89f539e7f21a5105e4c",
+      "size": 19461
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/infrastructure/providers.py",
+      "sha256": "f2c1110f10d7319d8075642793a79f4a794024fbb920e002379595dee3ca36c4",
+      "size": 28983
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/infrastructure/scheduler.py",
+      "sha256": "b2aa5cb09b4d971df9308634643e055baf89c2e0548c9f0181f1781706867b2c",
+      "size": 5150
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/infrastructure/storage.py",
+      "sha256": "7a6d61b1b40e8ef387a2e9af65e7d644795152154ca40e6b908a5486c93a3107",
+      "size": 3498
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/infrastructure/tabular.py",
+      "sha256": "99928a31fca10a6de37f40ea792bb37deac823e0dd2b71a79d7af40b700ad1eb",
+      "size": 22920
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/infrastructure/windows_ocr.ps1",
+      "sha256": "3ae9eaff7cc5118a59cc002184b645e8964fbf235a60aa1d58773c1b32c10c31",
+      "size": 2548
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/infrastructure/windows_ocr.py",
+      "sha256": "297c7a56a0954980118ff0079f6af926f2701a464b20cf68aedb0b04d587c874",
+      "size": 2217
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/infrastructure/worker.py",
+      "sha256": "3ef20f728272a04dab802204c0453c86319f00bde49a82a86b4f8d07ad142989",
+      "size": 10512
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/integration_definitions.py",
+      "sha256": "ba336d6de48db319e54de979d060bff812325304aaf634554cfc93676dd43330",
+      "size": 2436
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/integrations.py",
+      "sha256": "612799e8a2082a7128cc12ae052818443077e472e20fab1ca4df326e5c87b2fb",
+      "size": 19906
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/knowledge.py",
+      "sha256": "38a1f0e63ea00ec0a17a7c08ced008ad737d910fe0778b70b9f8b24e54cecd4a",
+      "size": 8620
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/learned.py",
+      "sha256": "109eafb91e70b0d3edc7849340b067028b404805f6715a9b848dbc30965178e0",
+      "size": 5940
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/media_workbench.py",
+      "sha256": "7eae3557b88081070a597349042c44dc85736356ad9f64821808894e8ae4c246",
+      "size": 10988
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/multimodal.py",
+      "sha256": "850b83b291fb380d9fb418b3281444a47dc810fb939db1f87e88f34565f311fc",
+      "size": 22693
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/native_adapters.py",
+      "sha256": "ca094786bafcf4a76824419c97875f4ec98b8883d6cffcbe764c06951649df77",
+      "size": 6329
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/native_speech.ps1",
+      "sha256": "1882a8fa2db5b7793cbcf1839315cf37409de672a56da9469230e8df4b91eed7",
+      "size": 1060
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/operations.py",
+      "sha256": "0006d1c88cde4347c387297cca3309209433a04e0199e3b4dcf0f390e58fd4e5",
+      "size": 40027
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/playground.py",
+      "sha256": "c28f7c8406d3fd33ccf9033dad6f819188662ed553156637acfd8f2887515917",
+      "size": 2673
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/tabular_operations.py",
+      "sha256": "bbbe35adcaa601fe925c7de24a6af5a46626531feabac8a8379bc92e5c41f660",
+      "size": 23259
+    },
+    {
+      "executable": false,
+      "path": "packages/core/src/mediasensei/workflows.py",
+      "sha256": "9494defd898d93af26fe302fea518b1e2a5c53a043969d338b09d61aa8a314d1",
+      "size": 21176
+    },
+    {
+      "executable": false,
+      "path": "packages/plugin-sdk/src/mediasensei_plugin_sdk/__init__.py",
+      "sha256": "be4a70f1cd8e68617e30be3180834293ce9df085e0f96e2867f6f23c4747810f",
+      "size": 22249
+    },
+    {
+      "executable": false,
+      "path": "packages/plugin-sdk/src/mediasensei_plugin_sdk/py.typed",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "executable": false,
+      "path": "packaging/sandbox/README.md",
+      "sha256": "54675b6b27978a472f26b0c9b5687082d97c0aba7c7860d8ce50c47a6c3cfadc",
+      "size": 840
+    },
+    {
+      "executable": false,
+      "path": "packaging/sandbox/linux-bwrap.args",
+      "sha256": "8666339884b327e07afb94d7962e3aafa1a308410f3b848eec46394ea88f4200",
+      "size": 82
+    },
+    {
+      "executable": false,
+      "path": "packaging/sandbox/macos-plugin.sb",
+      "sha256": "3476c110ff815ca5817a66d454854c2740d1e5392ab94f97655c4065d8c3f6f2",
+      "size": 234
+    },
+    {
+      "executable": false,
+      "path": "plugins/official/example_metadata_analyzer/plugin.py",
+      "sha256": "cbfc80ed7993d41bde2eb9e2a858f610a3cad7b5594d3be43914bc0448166c32",
+      "size": 607
+    },
+    {
+      "executable": false,
+      "path": "public/favicon.svg",
+      "sha256": "e6d2e59b7b5bbb0342e0fb496dfc262decbfe4426bbb7b047aec8d467d1dc6f7",
+      "size": 712
+    },
+    {
+      "executable": false,
+      "path": "public/og.png",
+      "sha256": "53521054cb3137984f90827cc7b9db018aeceea02bb66b778938930ef0d793c1",
+      "size": 1161846
+    },
+    {
+      "executable": false,
+      "path": "pyproject.toml",
+      "sha256": "c017ef1476a755689f3bd06b8da7eb6358a59a54aeae569828fe8f3649d31564",
+      "size": 1497
+    },
+    {
+      "executable": false,
+      "path": "requirements-lock.txt",
+      "sha256": "630e849b32901ea250f7cc06fa8d5675894c63eaa1777fd0c763a9a895c09347",
+      "size": 1425
+    },
+    {
+      "executable": true,
+      "path": "scripts/batch-one-smoke.mjs",
+      "sha256": "742f6d8173a77e1a1da4a8e9b713f3ad6f39bd703f720f6599c74c7684220176",
+      "size": 12042
+    },
+    {
+      "executable": true,
+      "path": "scripts/batch-three-smoke.mjs",
+      "sha256": "0467571b21d07e8e3f582455cff83e1dee7c736926bd407122355a8d6e7727d3",
+      "size": 8183
+    },
+    {
+      "executable": true,
+      "path": "scripts/batch-two-smoke.mjs",
+      "sha256": "603d8421d3a1b382147db864c9ad9088f1d3d18de882f91aca3e7a7707793cab",
+      "size": 10906
+    },
+    {
+      "executable": true,
+      "path": "scripts/browser-smoke.mjs",
+      "sha256": "20d579a71b7770051570880b51b8abbb333ad0e65a27ebb24607b7bdf6001425",
+      "size": 5255
+    },
+    {
+      "executable": true,
+      "path": "scripts/configure-media-tools.py",
+      "sha256": "d8e04c95746a50acdd7c0c37457ceb9aa5cd34426710ca85569ab2d81f419b00",
+      "size": 2191
+    },
+    {
+      "executable": true,
+      "path": "scripts/create-batch-two-fixtures.py",
+      "sha256": "c30176def2e20b6bb27c99e5f98e7eb573e38b2d604896590684b16c89f5487e",
+      "size": 3965
+    },
+    {
+      "executable": true,
+      "path": "scripts/e2e_smoke.py",
+      "sha256": "85703526da699ebb5ac14b0afb13c584c159a51a44d59b461b6690ec669e0976",
+      "size": 9537
+    },
+    {
+      "executable": true,
+      "path": "scripts/mediasensei_launcher.py",
+      "sha256": "12d623e8d1c29073ba10cd0b44d51dd7bba8686446c6ffbfa5472228fe232ccf",
+      "size": 15974
+    },
+    {
+      "executable": true,
+      "path": "scripts/release.py",
+      "sha256": "7fd62545e3f90a7d8d6452b87f160a01f67ed26a896b6d644695744fcd3d37bd",
+      "size": 19385
+    },
+    {
+      "executable": true,
+      "path": "scripts/run-python.mjs",
+      "sha256": "81f8d4ea5f2f54ad9d5dfaa1379dc42d16dc53801a05917bdb4475a7f52d933e",
+      "size": 581
+    },
+    {
+      "executable": true,
+      "path": "scripts/verify-installed-core.py",
+      "sha256": "d5d2de67c0b11ca3218e4d8c883a7c2269c1e12a80834f0d790ff8ff910072da",
+      "size": 2771
+    },
+    {
+      "executable": true,
+      "path": "scripts/verify-persistence.py",
+      "sha256": "88831ecdc95be97f0e2885485834a0a4b0db36ab5b76793f64eb0dbea6fed1e5",
+      "size": 7165
+    },
+    {
+      "executable": true,
+      "path": "scripts/workbench-smoke.mjs",
+      "sha256": "aa2fd0da076e165a24afe1696eba6d5f0bd1adaf347f1031d73e080f2d74efc8",
+      "size": 6449
+    },
+    {
+      "executable": false,
+      "path": "setup.bat",
+      "sha256": "db46851b7bd8fbaaaee56c72098a62bb55bfa2fd4eaf6fcebb7fd1364be42ac6",
+      "size": 203
+    },
+    {
+      "executable": true,
+      "path": "setup.sh",
+      "sha256": "15b6db394993d80135b6c95a7fc2287f0ba4c5c6186cf1cf3fa32d63f0356abe",
+      "size": 99
+    },
+    {
+      "executable": false,
+      "path": "start-dev.bat",
+      "sha256": "e234cac04322191591d95e1f238f0a5c59be113a3fae23b90489b6845bdaa8e7",
+      "size": 199
+    },
+    {
+      "executable": true,
+      "path": "start-dev.sh",
+      "sha256": "059ecf5b310769e8681ef16e5e90593d387f214dec37bbd6b39ca9e33ad62101",
+      "size": 97
+    },
+    {
+      "executable": false,
+      "path": "start.bat",
+      "sha256": "b8c124ab03bf0ac62df11640e1cbefc8c8400496fa4fe3c602b58a9d139b832f",
+      "size": 203
+    },
+    {
+      "executable": true,
+      "path": "start.sh",
+      "sha256": "7f0a363a17f895cd9ff11f889866dd8ee63b1b5526ea2345633a4b7eac323791",
+      "size": 99
+    },
+    {
+      "executable": false,
+      "path": "tests/core-api.test.mjs",
+      "sha256": "deb681c2b8748b9de7ebfd0b993333c27b9cf6b2648e193c71f91be973420bbe",
+      "size": 2993
+    },
+    {
+      "executable": false,
+      "path": "tests/test_audit_regressions.py",
+      "sha256": "1c6134067966eb280898117013e85395431f4b30b76e59a05a3511439108f25d",
+      "size": 10463
+    },
+    {
+      "executable": false,
+      "path": "tests/test_batch_four.py",
+      "sha256": "2ac028a49a2f48087c8393fe65978a74f69b6883bf7a90401970fbedfa3ac52a",
+      "size": 5246
+    },
+    {
+      "executable": false,
+      "path": "tests/test_batch_one.py",
+      "sha256": "8cfe4413792e0ac58d949bdf7f24f411b52cb72aec7afe00312d39bf8bb7336a",
+      "size": 13010
+    },
+    {
+      "executable": false,
+      "path": "tests/test_batch_three.py",
+      "sha256": "a653970fc648e878e86e534be4ebea139ae5988374d4444aa82c833f4eb4d224",
+      "size": 13669
+    },
+    {
+      "executable": false,
+      "path": "tests/test_batch_two.py",
+      "sha256": "93311be7db1f36e5c3b30dd7cb37dcda9d9b7c7d72393e42feb1a79d2f4b48d7",
+      "size": 18844
+    },
+    {
+      "executable": false,
+      "path": "tests/test_launcher_startup.py",
+      "sha256": "0736d135fbf875099348bbf13350bf5007eb13ac1a0df9d6a4b31f3315bb3ab0",
+      "size": 3293
+    },
+    {
+      "executable": false,
+      "path": "tests/test_operations.py",
+      "sha256": "b7f3cc915b2317d5b1865686591a30cea983bafb57d742ad0c2c08e24891b045",
+      "size": 8744
+    },
+    {
+      "executable": false,
+      "path": "tests/test_real_app_flow.py",
+      "sha256": "05a7e0cbf3ce3821568603bbd37352ca17aff859a96467692d8f7846a6d04545",
+      "size": 9055
+    },
+    {
+      "executable": false,
+      "path": "tsconfig.json",
+      "sha256": "81aca06cd76be09d9b65c7dff6a031c38664263b506ea792a28f36b17be25f2a",
+      "size": 671
+    },
+    {
+      "executable": false,
+      "path": "vite.config.ts",
+      "sha256": "22aa0518d500c61fe15617f9ede8dbc55668993680eb65369b1f243c2f8d5d56",
+      "size": 2350
+    }
+  ],
+  "platform": "windows",
+  "product": "MediaSensei",
+  "requirements": {
+    "node": ">=22.13.0",
+    "python": ">=3.12"
+  },
+  "schema": 1,
+  "version": "2.0.0-rc.1"
+}

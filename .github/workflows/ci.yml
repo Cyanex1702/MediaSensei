@@ -1,0 +1,35 @@
+name: Verify MediaSensei release candidate
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e ".[dev,image,data]" -c requirements-lock.txt
+      - run: npm ci
+      - run: npm run lint
+      - run: python -m ruff check apps packages scripts tests
+      - run: npm test
+      - if: runner.os == 'Linux'
+        run: npx playwright install --with-deps chromium
+      - if: runner.os != 'Linux'
+        run: npx playwright install chromium
+      - run: npm run test:e2e
+      - run: python scripts/verify-persistence.py
+      - run: python scripts/release.py build-python
+      - run: python -m twine check release/*
+      - run: python -m pip check
+      - run: python scripts/release.py bundle --platform all
