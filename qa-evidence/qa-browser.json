@@ -1,0 +1,15 @@
+{
+  "ok": true,
+  "project": "1b51e8ad-2d67-409d-ab69-a84c7fbf82d0",
+  "checks": [
+    "all 19 navigation pages",
+    "invalid saved preference recovery",
+    "blocked browser storage",
+    "Library pagination and modality empty states",
+    "Data Lab navigation selects Explore",
+    "search resets pagination",
+    "preview and enqueue with corrupt recents",
+    "mobile overview has no overflow"
+  ],
+  "errors": []
+}

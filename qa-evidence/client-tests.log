@@ -1,0 +1,27 @@
+
+> mediasensei-web@2.0.0-rc.1 test:client
+> node --experimental-strip-types --test tests/core-api.test.mjs tests/preferences.test.mjs
+
+✔ configured API base normalizes trailing slash and covers downloads (1.7713ms)
+✔ health uses the same base as project APIs (34.715ms)
+✔ ZIP uploads use multipart with browser-generated boundary (1.4879ms)
+✔ single media upload uses assets endpoint (0.6739ms)
+✔ invalid uploads retain server error code and HTTP status (2.1647ms)
+✔ network failures have a distinct error category (0.5552ms)
+✔ non-JSON API success is a protocol error (0.8755ms)
+✔ request timeout is classified separately (11.2853ms)
+✔ validation responses explain the field that failed (0.8537ms)
+✔ timeout remains active when headers arrive but the response body stalls (18.7867ms)
+✔ caller cancellation is distinct from a disconnected backend (1.1293ms)
+✔ bulk state changes bound concurrency and report partial failure counts (29.4856ms)
+✔ disabled storage does not crash reading or saving preferences (4.2462ms)
+✔ old, malformed and wrong-shape lists cannot crash render (0.5749ms)
+✔ a full storage quota does not turn a successful API operation into failure (0.3793ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 339.1371

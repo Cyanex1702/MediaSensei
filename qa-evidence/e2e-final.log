@@ -1,0 +1,7 @@
+{"ok":true,"projectId":"77783c0b-81f7-4808-adbb-f6cd62464722","checks":["browser API connection","project creation","multipart upload","multiple file upload","ZIP upload and worker processing","library","document retrieval","jobs","system","failure health isolation","invalid upload","persistence","mobile navigation"],"pageErrors":[]}
+{
+  "ok": true,
+  "api": true,
+  "web": true,
+  "plugin_generation": 2
+}

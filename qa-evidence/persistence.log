@@ -1,0 +1,1 @@
+{"ok": true, "checks": ["queued import survives API exit", "worker processes persisted import", "queued transform survives API exit", "new worker completes transform", "outputs and hashes survive API restart", "completed jobs survive restart", "model revision and checksum survive API restart", "saved Playground source survives API restart"]}

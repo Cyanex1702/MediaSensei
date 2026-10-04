@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "project": "67237e85-7ffb-4c77-b200-45f866d8a848",
+  "checks": [
+    "CSV upload and worker",
+    "dataset adoption",
+    "profile",
+    "preview",
+    "operation execution",
+    "immutable version",
+    "Parquet download",
+    "recipe persistence",
+    "intent search",
+    "heatmap",
+    "reload persistence",
+    "mobile layout",
+    "four theme palettes and persistence",
+    "compound query and selection",
+    "recipe import and typed binding",
+    "saved workflow",
+    "notebook export",
+    "chart SVG/PNG/report export",
+    "version feature diff",
+    "installed Function Explorer"
+  ],
+  "pageErrors": []
+}

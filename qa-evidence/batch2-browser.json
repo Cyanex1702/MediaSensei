@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "project": "cbbc0c6f-457e-4aef-89e7-86eb93d3ca32",
+  "checks": [
+    "Image before/after preview",
+    "Queued image transform, bundle download and Library adoption",
+    "Windows OCR text extraction",
+    "Image metadata, histograms and distributions",
+    "Document cleanup, strategy comparison, indexing and source-aware chunks",
+    "Real document retrieval",
+    "Complete RAG bundle download",
+    "Editable acquisition plan and explicit consent gate",
+    "Candidate review and pause/resume/cancel against local persisted run",
+    "Saved outputs survive reload",
+    "Default Forest theme and mobile layout"
+  ],
+  "errors": [],
+  "skipped": [
+    "Native video/audio processing: FFmpeg unavailable"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "ok": true,
+  "project": "c3165d6b-6801-4329-8542-52b6576892d3",
+  "checks": [
+    "UI training through worker, immutable model revision and verification",
+    "Pinned learned indexing and retrieval",
+    "Model download, import, archive and reactivate",
+    "Playground validation, saved script and real dataset revision",
+    "Native OS credential save/revoke, cleared secret and explicit import gate",
+    "Saved native voice, worker speech, playable audio and provenance download",
+    "Saved integration state survives reload",
+    "Mobile layout"
+  ],
+  "errors": []
+}

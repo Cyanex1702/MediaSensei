@@ -1,0 +1,59 @@
+[build-system]
+requires = ["hatchling>=1.27,<1.32"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mediasensei"
+version = "2.0.0-rc.1"
+description = "Local-first multimodal data engineering core"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.115,<1",
+  "pydantic>=2.10,<3",
+  "pydantic-settings>=2.7,<3",
+  "packaging>=24,<27",
+  "pypdf>=5,<7",
+  "python-multipart>=0.0.20,<1",
+  "sqlalchemy>=2.0,<3",
+  "typer>=0.15,<1",
+  "uvicorn>=0.34,<1",
+  "keyring>=25,<27",
+]
+
+[project.optional-dependencies]
+data = [
+  "duckdb>=1.2",
+  "numpy>=2.1",
+  "openpyxl>=3.1",
+  "pandas>=2.2",
+  "pyarrow>=19",
+]
+image = ["pillow>=12.1,<13"]
+providers = [
+  "huggingface-hub>=0.28,<2",
+  "kaggle>=1.7,<2",
+]
+dev = ["build>=1.2,<2", "httpx>=0.28", "mypy>=1.14", "pytest>=8.3", "ruff>=0.9", "twine>=6,<7"]
+
+[project.scripts]
+mediasensei = "mediasensei.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = [
+  "packages/core/src/mediasensei",
+  "packages/plugin-sdk/src/mediasensei_plugin_sdk",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.hatch.build.targets.sdist]
+include = ["/packages", "/apps", "/scripts", "/tests", "/docs", "/pyproject.toml", "/README.md", "/LICENSE", "/requirements-lock.txt", "/SECURITY.md", "/CHANGELOG.md"]
+
+[tool.pytest.ini_options]
+pythonpath = ["packages/core/src", "packages/plugin-sdk/src"]
+testpaths = ["tests"]
