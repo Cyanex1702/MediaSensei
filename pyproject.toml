@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "mediasensei"
-version = "2.0.0-rc.1"
+version = "2.0.0-rc.2"
 description = "Local-first multimodal data engineering core"
 license = "Apache-2.0"
 license-files = ["LICENSE"]
@@ -21,6 +21,7 @@ dependencies = [
   "typer>=0.15,<1",
   "uvicorn>=0.34,<1",
   "keyring>=25,<27",
+  "truststore>=0.10.5,<1",
 ]
 
 [project.optional-dependencies]

@@ -66,3 +66,23 @@ __pycache__/
 .vscode/
 *.swp
 *.swo
+
+# Local credentials and generated state
+.env
+.env.local
+*.key
+*.pem
+*.pfx
+*.p12
+/backups/
+/.mediasensei-media-setup
+
+# Private credentials and databases
+kaggle.json
+.kaggle/
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+

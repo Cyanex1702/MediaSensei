@@ -26,7 +26,7 @@ LOG_DIR = STATE_DIR / "logs"
 STARTUP_STATUS = STATE_DIR / "startup-status.json"
 MIN_PYTHON = (3, 12)
 MIN_NODE = (22, 13, 0)
-PYTHON_EXTRAS = "image,data"
+PYTHON_EXTRAS = "image,data,providers"
 
 
 class LauncherError(RuntimeError):
@@ -103,6 +103,8 @@ def sync_dependencies(*, force: bool = False, dry_run: bool = False) -> None:
         report("Preparing MediaSensei's private Python environment...")
         run([sys.executable, "-m", "venv", str(VENV)], dry_run=dry_run)
     if force or previous.get("fingerprint") != fingerprint or not (ROOT / "node_modules" / ".bin" / "vinext").exists() or created_venv:
+        if not dry_run and shutil.disk_usage(ROOT).free < 3 * 1024**3:
+            raise LauncherError("Setup needs at least 3 GiB free disk space for dependencies and working headroom. Free space and launch again. Existing project data has not been deleted.")
         if not dry_run and process_status():
             report("Stopping this instance before updating dependencies...")
             stop()

@@ -34,4 +34,4 @@ Discovery pages are capped at 500 unique candidates. URLs, lengths, dimensions, 
 
 Runtime refresh is explicit: `GET /api/v1/plugins` returns `generation`, `loaded_at`, and `reload_policy`; `POST /api/v1/plugins/rescan` validates a replacement snapshot and advances the generation. There is no file watcher and no silent hot swap.
 
-See `plugins/official/example_metadata_analyzer`, the [Plugin Runtime architecture](architecture/plugin-runtime.md), and the [hardening decision](adr/014-harden-plugin-execution.md).
+See `plugins/official/example_metadata_analyzer` for an executable example.

@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "shadcn/tailwind.css";
+@import "./shadcn-base.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -1229,3 +1229,6 @@ body {
 .sensei-workflow-steps span {color:var(--primary); font-size:12px; margin-right:10px}
 .sensei-workflow-steps small {display:block; color:var(--muted-foreground); line-height:1.6; margin-top:8px}
 @media(max-width:850px) {.sensei-workflow-steps {grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+
+.contract-rule {display:grid;grid-template-columns:minmax(120px,1fr) minmax(120px,1fr) minmax(120px,1fr) auto;gap:12px;align-items:end;margin:12px 0;padding:12px;border:1px solid var(--border);border-radius:8px}.contract-rule label{min-width:0;margin:0}.contract-rule button{margin-bottom:0}@media(max-width:800px){.contract-rule{grid-template-columns:1fr}.contract-rule input,.contract-rule select{max-width:100%}}

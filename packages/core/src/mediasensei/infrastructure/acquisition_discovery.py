@@ -6,6 +6,7 @@ import ipaddress
 import json
 import re
 import socket
+import ssl
 import time
 import urllib.error
 import urllib.parse
@@ -13,6 +14,8 @@ import urllib.request
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Protocol, cast
+
+import truststore
 
 from mediasensei.domain.acquisition import (
     DiscoveryCandidate,
@@ -75,7 +78,7 @@ class OpenverseDiscoveryProvider:
     endpoint = "https://api.openverse.org/v1/images/"
 
     def __init__(self, *, opener: urllib.request.OpenerDirector | None = None) -> None:
-        self._opener = opener or urllib.request.build_opener()
+        self._opener = opener or urllib.request.build_opener(urllib.request.HTTPSHandler(context=truststore.SSLContext(ssl.PROTOCOL_TLS_CLIENT)))
 
     def available(self) -> bool:
         return True
@@ -178,7 +181,7 @@ class WikimediaCommonsDiscoveryProvider:
     endpoint = "https://commons.wikimedia.org/w/api.php"
 
     def __init__(self, *, opener: urllib.request.OpenerDirector | None = None) -> None:
-        self._opener = opener or urllib.request.build_opener()
+        self._opener = opener or urllib.request.build_opener(urllib.request.HTTPSHandler(context=truststore.SSLContext(ssl.PROTOCOL_TLS_CLIENT)))
 
     def available(self) -> bool:
         return True
@@ -303,7 +306,7 @@ class SafeHttpDownloader:
     def __init__(self, *, allow_private_network: bool = False, max_redirects: int = 5) -> None:
         self.allow_private_network = allow_private_network
         self.max_redirects = max(0, min(max_redirects, 10))
-        self._opener = urllib.request.build_opener(_NoRedirect())
+        self._opener = urllib.request.build_opener(_NoRedirect(), urllib.request.HTTPSHandler(context=truststore.SSLContext(ssl.PROTOCOL_TLS_CLIENT)))
 
     def download(self, url: str, destination: Path, *, max_bytes: int) -> DownloadReceipt:
         current = canonicalize_url(url)

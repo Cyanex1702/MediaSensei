@@ -351,6 +351,7 @@ export default function DataLab({
         <div className="lab-empty-state">
           <FlaskConical size={36} />
           <h2>Start with a table</h2>
+          <p>Local table work supports up to 200,000 rows, 256 MiB per source, and a 1 GiB decoded-data allowance. Split larger sources before importing. Originals are preserved.</p>
           <p>
             Import CSV, Excel, or Parquet from Overview. Once its inspection job completes, choose
             it above to create a working dataset.

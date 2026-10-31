@@ -151,12 +151,12 @@ export const api = {
   controlJob: (jobId: string, action: 'pause' | 'resume' | 'cancel' | 'retry-failed') =>
     request<Job>(`/jobs/${jobId}/${action}`, { method: 'POST' }),
   jobEvents: (jobId: string) => request<{ items: unknown[] }>(`/jobs/${jobId}/events?limit=100`),
-  upload: async (projectId: string, file: File) => {
+  upload: async (projectId: string, file: File, source?: {kind: string; name: string; allText?: boolean}) => {
     const body = new FormData();
     body.append('file', file, file.name);
     const isZip = file.name.toLowerCase().endsWith('.zip');
     return request<Record<string, unknown>>(
-      isZip ? `/projects/${projectId}/imports/archive` : `/projects/${projectId}/assets`,
+      source ? `/projects/${projectId}/tabular?${new URLSearchParams({[source.kind]: source.name, ...(source.allText ? {all_text: "true"} : {})})}` : isZip ? `/projects/${projectId}/imports/archive` : `/projects/${projectId}/assets`,
       { method: 'POST', body },
     );
   },

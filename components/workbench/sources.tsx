@@ -148,7 +148,7 @@ export default function Sources({ projectId }: { projectId: string }) {
       <h1>Build a reviewed dataset.</h1>
       <p>
         Describe the target, inspect the plan, then explicitly authorize a test or acquisition.
-        Planning does not download candidates.
+        Planning does not download candidates. Discovery currently collects images from Wikimedia Commons, Openverse, or direct URLs. For provider datasets use Connections. Review the enforced license and domain filters before starting; metadata relevance does not verify image contents.
       </p>
       <label>
         Acquisition request
@@ -199,7 +199,7 @@ export default function Sources({ projectId }: { projectId: string }) {
             {lines("queries", "Search queries (one per line)")}
             {lines("provider_ids", "Provider IDs (one per line)")}
             {lines("categories", "Categories / topic context")}
-            {lines("allowed_licenses", "Allowed license labels (empty allows any; exact match)")}
+            {lines("allowed_licenses", "Allowed license labels (empty allows any; optional CC version)")}
             {lines("allowed_domains", "Allowed source domains (empty allows any)")}
             <label>
               Relevance strategy

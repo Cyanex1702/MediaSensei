@@ -1,963 +1,429 @@
-# MediaSensei
-
 <div align="center">
 
-### Local-first multimodal data engineering, dataset preparation & reproducible AI workflows
+# MediaSensei
 
-**Import → Inspect → Transform → Search → Build datasets → Train → Version → Export**
+### Local-first multimodal data engineering, dataset preparation & reproducible workflows
 
-[![Release](https://img.shields.io/badge/status-2.0.0--rc.1-2ea44f?style=for-the-badge)](https://github.com/Cyanex1702/MediaSensei)
-[![License](https://img.shields.io/badge/license-Apache--2.0-4c1d95?style=for-the-badge)](LICENSE)
-![Python](https://img.shields.io/badge/Python-3.12%2B-3776AB?style=for-the-badge\&logo=python\&logoColor=white)
-![Node](https://img.shields.io/badge/Node.js-22.13%2B-339933?style=for-the-badge\&logo=node.js\&logoColor=white)
-![Local First](https://img.shields.io/badge/local--first-privacy--oriented-111827?style=for-the-badge)
+**Import → Inspect → Transform → Validate → Version → Export**
+
+[![Release](https://img.shields.io/badge/release-2.0.0--rc.2-34d399?style=for-the-badge)](#whats-new-in-200-rc2)
+[![License](https://img.shields.io/badge/license-Community%20Non--Commercial-d4a853?style=for-the-badge)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.12%2B-3776AB?style=for-the-badge)](#quick-start)
+[![Node.js](https://img.shields.io/badge/Node.js-22.13%2B-43853D?style=for-the-badge)](#quick-start)
+[![Local First](https://img.shields.io/badge/local--first-your%20workspace-183b2d?style=for-the-badge)](#security--data-handling)
+
+<img src="public/og.png" alt="MediaSensei — raw data to reliable datasets" width="100%">
+
+[Overview](#what-is-mediasensei) · [Capabilities](#capabilities) · [Quick start](#quick-start) · [Release changes](#whats-new-in-200-rc2) · [Example dataset](#companion-dataset-messy-retail-data) · [Documentation](#documentation)
 
 </div>
 
-> [!IMPORTANT]
-> **2.0.0-rc.1 is a repaired local release candidate.** The current QA pass validated the Windows release boundary and production frontend build. macOS/Linux native-media certification and authenticated remote-provider flows remain unverified. See [QA_REPORT.md](QA_REPORT.md) and [docs/2.0-status.md](docs/2.0-status.md).
-
 ---
 
-## ✦ What is MediaSensei?
+## What is MediaSensei?
 
-**MediaSensei is a local-first workspace for multimodal data engineering.**
+**MediaSensei is a local workspace for turning raw files into inspectable, reusable datasets.**
 
-It brings files, datasets, media processing, document retrieval, lightweight model training, acquisition, quality checks, and reproducible workflows into one desktop-oriented environment.
+It brings tabular preparation, media processing, document retrieval, data acquisition, quality checks, lightweight local models, and reproducible workflows into one interface. Work is organized into projects, with a Library for source assets, dedicated labs for processing, and persistent jobs for execution.
 
-Instead of treating processing as disposable scripts, MediaSensei treats work as **persistent, versioned, inspectable jobs and artifacts**.
+A file import is the beginning of a workflow. You can inspect its structure, preview changes, run transformations, review failures, save a version, and export the result with its history. Original source bytes remain preserved in content-addressed storage.
+
+MediaSensei is useful for:
+
+- **Data scientists** preparing and validating datasets before analysis or modeling.
+- **Researchers and students** exploring local tables, documents, images, audio, or video.
+- **Dataset builders** collecting and reviewing source material with provenance.
+- **Developers** reusing operations through the API, CLI, Python core, or plugin SDK.
+
+It is designed for a **trusted, single-user workstation**. Processing stays local by default; remote acquisition and provider imports require explicit authorization.
+
+## Capabilities
+
+| Area | What it provides |
+|---|---|
+| **Multimodal ingestion** | Import tables, documents, images, audio/video, and supported files inside ZIP archives. |
+| **Data Lab** | Profiles, cleaning, type conversion, filtering, reshaping, combining, charting, splits, and preprocessing. |
+| **Quality** | Persistent validation rules, column dictionaries, revision-aware reports, and examples of offending rows. |
+| **Library** | Source browsing, metadata inspection, selections, state controls, and saved search/modality collections. |
+| **Image Lab** | Transform previews, image conversion, resizing, thumbnails, derivatives, and supported OCR. |
+| **Video / Audio Labs** | FFmpeg-backed inspection and media operations with persistent job state. |
+| **Knowledge Lab** | Document parsing, chunking, local indexing, retrieval, and RAG-oriented exports. |
+| **Model Hub** | Fitted lexical retrieval and supervised language-classification models with revisioned artifacts. |
+| **Sources** | Image discovery, acquisition plans, filters, candidate review, consent, and target tracking. |
+| **Workflows & Versions** | Reusable recipes, recorded parameters, checkpoints, version comparisons, restore, and replay exports. |
+| **Storage & Recovery** | Immutable objects, storage inspection, portable backups, and verified restore into a new folder. |
+| **Extensions** | Versioned plugin contracts and explicit trust for executable plugins. |
+
+## What's new in 2.0.0-rc.2?
+
+This release strengthens import correctness, acquisition decisions, and day-to-day dataset preparation.
+
+| Change | What it means in practice |
+|---|---|
+| **Explicit CSV/TSV validation** | Inconsistent records, invalid headers, and parsing problems fail with useful diagnostics instead of silently becoming an incorrect table. |
+| **Delimiter and text controls** | Choose supported delimiters and keep identifiers such as `00123` as text. Import options reach the worker and remain in provenance. |
+| **Database/workbook source selection** | Choose the table or sheet you want from the normal upload workflow. |
+| **Corrected acquisition relevance** | The originating search query no longer counts as evidence that an individual candidate is relevant. |
+| **Enforced supported license constraints** | Supported CC-only instructions populate the plan's filters. Provider license labels are normalized without treating CC-BY-NC or CC-BY-SA as CC-BY. |
+| **Clear unsupported-request handling** | Requests outside image discovery's scope, or unsupported free-text constraints, are rejected explicitly. |
+| **Saved quality contracts** | Store required, unique, numeric, range, and allowed-category checks, plus a column dictionary. |
+| **Reusable Library collections** | Save filename/hash search and modality filters for later use. |
+| **Backup and restore tools** | Snapshot committed SQLite state and stored files; verify checksums and restore without overwriting the existing workspace. |
+| **Better resource feedback** | See when processing is paused for low memory or disk space, with guidance to recover. |
+| **Windows setup improvements** | Check prerequisites, install dependencies, attempt native-tool setup, build, and start the app through one launcher. |
+| **Dependency maintenance** | Update frontend dependencies and retain required third-party notices. |
+
+### Verification
+
+The Windows release checks included **210 passing backend tests with no skips**, **15 client tests**, and **44 production browser scenario checks** with no page errors. TypeScript, lint, dependency checks, and the frontend build passed. The dependency audit reported zero known advisories at the time of verification.
+
+A fresh extraction in a folder containing spaces also installed its own application dependencies, built, launched, and passed a browser smoke workflow. Python and Node were already present for that check. These results describe the tested environment; they do not certify every operating system, provider account, or workload.
+
+## Data Lab
+
+A visual workbench for turning imported tables into reproducible working datasets.
+
+### Explore and prepare
+
+- Inspect column types, missing values, frequencies, statistics, and samples.
+- Search, filter, sort, and select table rows and columns.
+- Clean missing values, duplicates, strings, dates, and categories.
+- Convert types, derive columns, reshape data, and combine datasets.
+- Create charts and export visual reports.
+- Build reusable operation workflows and parameterized recipes.
+
+### Prepare for modeling
+
+Create train/validation/test splits and use the supported fitted preprocessing operations. Keep fit-dependent statistics and vocabularies restricted to the training partition.
+
+> **Split before fitting preprocessing.** Validation/test information should not influence training statistics. A successful small preview is also not proof that the full dataset is free of defects.
+
+### Preserve and reproduce
+
+Working revisions, named versions, comparisons, lineage, and workflow records help explain how an output was produced. Export a working table or a reproducibility bundle with source references and recorded operations.
 
 ```text
-┌─────────────────────────────────────────────────────────────┐
-│                         MediaSensei UI                      │
-│ Overview · Library · Jobs · Data · Image · Video · Audio   │
-│ Knowledge · Quality · Model Hub · Acquisition · Settings   │
-└─────────────────────────────┬───────────────────────────────┘
-                              │ REST / JSON
-┌─────────────────────────────▼───────────────────────────────┐
-│                         FastAPI                             │
-│ Projects · Assets · Jobs · Workbench · Integrations         │
-└─────────────────────────────┬───────────────────────────────┘
-                              │
-┌─────────────────────────────▼───────────────────────────────┐
-│                         Core                                │
-│ Domain · Operations · Media · Documents · Acquisition       │
-│ Models · Plugins · Storage · Persistent Job Queue            │
-└───────────────┬─────────────────────────────┬───────────────┘
-                │                             │
-        ┌───────▼────────┐           ┌────────▼─────────┐
-        │ SQLite + WAL   │           │ Content-addressed│
-        │ Catalog        │           │ storage          │
-        └────────────────┘           └────────┬─────────┘
-                                             │
-                                      ┌──────▼──────┐
-                                      │ Local worker │
-                                      │ leased jobs  │
-                                      └───────────────┘
+CSV / Excel / Parquet / Database
+              ↓
+       Inspect + profile
+              ↓
+       Preview operations
+              ↓
+         Run on worker
+              ↓
+      Validate + save version
+              ↓
+       Export + reproduce
 ```
 
-### Design goals
+## Quality & Data Dictionaries
 
-> **Local control + reproducibility + multimodal workflows + explicit state.**
+Save a set of checks against a working dataset and run it on the current revision.
 
-MediaSensei is intentionally scoped as a **trusted, single-user local workstation application**, not a public multi-tenant service.
+| Check | Example |
+|---|---|
+| Required | Every row must have a customer identifier. |
+| Unique | An order identifier should not repeat. |
+| Numeric | A quantity must be interpretable as a number. |
+| Minimum / maximum | A quantity must fall within the chosen range. |
+| Allowed categories | A channel must belong to the approved set. |
 
----
+Reports record the dataset revision, content reference, rule results, total failure counts, and up to **100 example offending rows**. Download the report for review. These checks do not modify rows and must be rerun after changes; they are not automatic workflow gates.
 
-## ✦ Capabilities
+Use the column dictionary for meanings, units, source notes, and intended roles. Keep necessary context with the dataset rather than in a separate conversation.
 
-| Area                      | What it provides                                                        |
-| ------------------------- | ----------------------------------------------------------------------- |
-| 🗂️ **Multimodal ingest** | Images, documents, audio/video, tables and ZIP archives                 |
-| ⚙️ **Persistent jobs**    | Queue, pause, resume, cancel, retry and inspect job events              |
-| 🧪 **Data Lab**           | 35+ executable table operations, previews, profiles, charts and reports |
-| 🧬 **Reproducibility**    | Versions, lineage, checkpoints, comparisons and exact replay exports    |
-| 🔎 **Knowledge Lab**      | Document parsing, chunking, local indexing, search and RAG bundles      |
-| 🖼️ **Image Lab**         | Parameterized transforms, thumbnails, derivatives and OCR               |
-| 🎬 **Video / Audio Labs** | FFmpeg-backed media processing with explicit native-tool boundaries     |
-| 🧠 **Model Hub**          | Fitted lexical retrieval and supervised language models with revisions  |
-| 🌐 **Acquisition**        | Discovery, candidate review, consent and policy-controlled acquisition  |
-| 🔌 **Plugin runtime**     | Providers, downloaders, planners, evaluators and analysis plugins       |
-| 🔐 **Security**           | OS credential storage, upload/ZIP hardening and loopback-only API       |
-
----
-
-## ✦ Data Lab
-
-A visual tabular workbench for turning raw data into reproducible datasets.
-
-### Included
-
-* 35+ executable operations
-* DuckDB filtering and selection
-* Column profiles and statistics
-* Explicit preview sampling
-* Reusable charts and visual reports
-* Train/validation/test splitting
-* Training-only preprocessing
-* Parameterized workflows and recipes
-* Resumable execution with checkpoints
-* Immutable versions and comparisons
-* Revision-aware concurrency protection
-* Lineage-aware restore
-* Exact Python / notebook / replay exports
-
-```mermaid
-flowchart LR
-    A[CSV / XLSX / Parquet / DB] --> B[Inspect]
-    B --> C[Profile + Preview]
-    C --> D[Build Workflow]
-    D --> E{Preview OK?}
-    E -- No --> C
-    E -- Yes --> F[Run on Worker]
-    F --> G[Checkpoint]
-    G --> H[Version + Lineage]
-    H --> I[Export / Replay]
-```
-
-> **Training rule:** create a split before using fitted preprocessing so statistics and category vocabularies are learned exclusively from training rows.
-
----
-
-## ✦ Media & Knowledge Labs
+## Media & Knowledge Labs
 
 ### Images
 
-* JPG/JPEG
-* PNG
-* WebP
-* BMP
-* TIF/TIFF
-* GIF
-* Parameterized transforms
-* JPEG / PNG / WebP outputs
-* Thumbnail and derivative generation
-* Tesseract OCR
-* Windows inbox OCR fallback where available
+Import supported images, inspect metadata, preview edits, and create derived outputs. Image workflows include resizing, conversion, thumbnails, and parameterized transformations. OCR uses supported Tesseract or Windows inbox capabilities where available.
 
-### Audio / Video
+### Audio and video
 
-* WAV
-* MP3
-* FLAC
-* M4A
-* OGG
-* AAC
-* MP4
-* MOV
-* MKV
-* WebM
-* AVI
-* M4V
-* FFmpeg + ffprobe integration
-* Native-tool availability reporting
-* Persistent jobs and retained failures
-* Original assets remain untouched
+Run supported FFmpeg/ffprobe-backed inspection, conversion, trimming, and derivative operations. Jobs retain their progress and failures, and source assets remain unchanged.
 
-### Knowledge pipeline
+Native-tool availability is reported by the app. The Windows launcher attempts media-tool installation; other platforms need their own native tools available.
+
+### Documents and retrieval
 
 ```text
-Document
-   ↓
-Parse
-   ↓
-Normalize
-   ↓
-Chunk
-   ↓
-Index
-   ↓
-Search
-   ↓
-RAG bundle
+Document → Parse → Chunk → Index → Search → Retrieval bundle
 ```
 
-Supports local document preparation, content units, indexing and retrieval-oriented exports.
+Knowledge Lab prepares supported documents for local search and retrieval-oriented exports. Model Hub provides fitted lexical retrieval and language-classification models, with checksummed revisions and recorded sources.
 
-Scanned PDFs require an external OCR workflow.
+The built-in lexical models are not general neural semantic models or a full model-training platform. Scanned PDFs require an OCR preparation workflow.
 
----
+## Intelligent Acquisition
 
-## ✦ Model Hub
+Sources separates a collection plan from the act of downloading files.
 
-MediaSensei 2.0 adds lightweight local model lifecycle primitives.
+1. Describe an image collection or edit a plan.
+2. Inspect the target, providers, filters, relevance strategy, and budgets.
+3. Enable the project's remote-access policy and explicitly authorize the run.
+4. Review discovered candidates and retained previews.
+5. Follow accepted/rejected/review counts and the final result or shortfall.
 
-### Features
+Supported discovery paths include Wikimedia Commons, Openverse, and direct image URLs. Quality, duplicate, domain, and supported license policies can affect acceptance. Metadata relevance uses candidate title/description; it does not verify visual content.
 
-* Fitted lexical retrieval models
-* Supervised language models
-* Revisioned model artifacts
-* SHA-256 artifact verification
-* Training provenance
-* Source dataset references
-* Archive / reactivate lifecycle
-* Local search integration
+**Discovery is image-first.** Use Connections for supported provider dataset imports. A CSV or document request is not silently converted into image acquisition. Provider credentials, access restrictions, network conditions, and rate limits still apply.
 
-Model artifacts are validated before use and checksum-verified when loaded.
+Remote access is never an automatic side effect of importing a local file.
 
----
+## Jobs, Versions & Reproducibility
 
-## ✦ Intelligent Acquisition
+Longer operations run through the persistent worker rather than depending on an open browser tab.
 
-Acquisition is deliberately separated from downloading bytes.
+Job and workflow records retain input references, parameters, operation versions, progress, checkpoints, failures, and derived artifacts. Supported controls let you pause, resume, cancel, retry, and inspect work.
 
-```mermaid
-flowchart LR
-    P[Prompt / Spec] --> D[Discovery]
-    D --> R[Candidate Review]
-    R --> Q{Approved?}
-    Q -- No --> X[Reject / Revise]
-    Q -- Yes --> C[Consent + Project Policy]
-    C --> A[Acquire]
-    A --> V[Validate]
-    V --> S[Store Immutable Asset]
-```
+Dataset revisions protect against stale writes. Named versions and comparisons let you inspect changes and return to a saved state. Eligible deterministic operations can reuse cached artifacts based on their recorded inputs and execution context.
 
-### Features
+Exports are designed to preserve more than final bytes: retain the dataset version, workflow, and provenance needed to understand the result.
 
-* Editable acquisition specifications
-* Provider discovery
-* Candidate metadata and relevance review
-* Consent-aware acquisition
-* Target-yield tracking
-* Duplicate and quality rejection policies
-* Revision-pinned provider requests
-* Explicit remote-access policy
+## Companion Dataset: Messy Retail Data
 
-Remote acquisition is **never an automatic side effect of local imports**.
+**Messy Retail Data: Raw vs Clean Challenge** is a synthetic dataset created to demonstrate a practical MediaSensei workflow.
 
-See [docs/integrations.md](docs/integrations.md).
+It includes linked customer, product, and order tables, deliberately messy raw files, pre-corruption clean references, a SQLite database, a data dictionary, an issue ledger, a reproducible generator, and a starter notebook.
 
----
+| Table | Raw records | Clean reference records |
+|---|---:|---:|
+| Orders | 25,500 | 25,000 |
+| Customers | 4,050 | 4,000 |
+| Products | 155 | 150 |
 
-## ✦ Plugin Runtime
+The fictional orders cover **2024–2025**. Planted issues include missing values, exact duplicates, damaged ID padding, inconsistent categories, mixed dates, invalid quantities/prices, broken references, and incorrect totals. Some unusual orders are legitimate, so not every outlier should be deleted.
 
-The plugin system provides a versioned extension layer for:
+### What was done in MediaSensei
 
-* Discovery providers
-* Acquisition downloaders
-* Prompt planners
-* Relevance evaluators
-* Analysis plugins
+The companion data was generated with its supplied Python script, then exercised through the actual app:
 
-Plugins use explicit manifests, permissions, versions and SHA-256 source fingerprints.
+1. Imported **25,500 raw order rows** while preserving leading-zero identifiers.
+2. Created a working dataset and saved a version before transformation.
+3. Removed **500 exact duplicate orders**, leaving **25,000 rows**.
+4. Saved quantity checks and identified **680 remaining rows** with missing or out-of-range quantities.
+5. Downloaded the working Parquet file and verified it against an independent deduplication result.
+6. Imported the database's `clean_orders` table through the source selector and verified **25,000 rows**.
+7. Reloaded the app and checked that the revision persisted.
 
-Trusted analyzers can run through a separate subprocess boundary.
+Deduplication was a partial cleaning demonstration. The exported table still contained other planted defects. The clean reference was generated before corruption; it was not automatically reconstructed by the app.
 
-> [!WARNING]
-> Python plugin installation, validation and approval can execute plugin code. Only use plugins you trust. The subprocess boundary is an isolation mechanism, **not an OS-level security sandbox**.
+### Kaggle
 
-See [SECURITY.md](SECURITY.md).
+**Publication pending — placeholder link:** [Messy Retail Data on Kaggle](https://www.kaggle.com/datasets/YOUR_USERNAME/messy-retail-data-raw-vs-clean-challenge)
 
----
+Replace that URL after publishing. It is a placeholder, not a live dataset page.
 
-## ✦ Jobs, Versions & Reproducibility
+All records are synthetic. There are no real customers, transactions, stores, brands, or personal information. The dataset is intended for cleaning, validation, SQL, and exploratory-analysis practice—not claims about actual markets or fraud. Its own license and documentation are separate from the app's license.
 
-A transformation should still be understandable after it finishes.
+## Architecture
 
 ```mermaid
 flowchart TD
-    A[Input artifact] --> B[Job definition]
-    B --> C[Worker lease]
-    C --> D[Operation]
-    D --> E[Checkpoint]
-    E --> F[Next operation]
-    F --> G[Output artifact]
-    G --> H[Dataset revision]
-    H --> I[Lineage]
-    I --> J[Reproducibility bundle]
+    UI[React workbench] --> API[FastAPI]
+    API --> Core[Python core and operation services]
+    Core --> Catalog[SQLite catalog and persistent jobs]
+    Core --> Objects[Content-addressed object storage]
+    Worker[Local worker] --> Catalog
+    Worker --> Objects
+    Worker --> Tools[Data, media, document and provider processors]
 ```
 
-Run records capture:
+| Path | Purpose |
+|---|---|
+| `app/` | Web entry points, metadata, and styling. |
+| `components/` | Workbench screens and reusable interface components. |
+| `apps/api/` | FastAPI routes and service adapters. |
+| `packages/core/` | Operations, jobs, storage, media, documents, and acquisition. |
+| `packages/plugin-sdk/` | Versioned extension contracts. |
+| `lib/` | Frontend API clients and utilities. |
+| `scripts/` | Setup, launch, verification, and packaging tools. |
+| `tests/` | Backend, API, and workflow regression tests. |
+| `docs/` | User and integration documentation. |
 
-* Workflow parameters
-* Operation versions
-* Library versions
-* MediaSensei version
-* Input references
-* Lineage
-* Checkpoints
-* Derived artifact references
-
-### Concurrency protection
-
-Dataset updates use revision checks rather than blind overwrites.
-
-A stale workflow cannot silently replace newer dataset state.
-
-### Deterministic caching
-
-Deterministic workflows can reuse cached artifacts using keys derived from:
-
-```text
-Input
-+
-Operations
-+
-Operation versions
-+
-Library versions
-+
-Engine version
-+
-External inputs
-```
-
----
-
-## ✦ Security & Data Handling
-
-MediaSensei is local-first by design.
-
-### Upload and archive hardening
-
-* Empty-file rejection
-* Supported-extension validation
-* Corrupt-content diagnostics
-* ZIP entry and expansion limits
-* Path traversal checks
-* Windows drive / alternate-data-stream checks
-* Symlink rejection
-* Duplicate archive-path detection
-* Password-protected ZIP rejection
-* Immutable content-addressed originals
-
-Supported saved connections use native OS credential storage instead of storing provider secrets directly in the project database.
-
-The API intentionally binds to loopback and has no user authentication.
-
-> **Do not expose the API directly to the internet.**
-
-See [SECURITY.md](SECURITY.md).
-
----
-
-## ✦ Architecture
-
-```mermaid
-flowchart TB
-
-    subgraph UI["Web UI"]
-        APP["MediaSensei App"]
-        LABS["Data · Image · Video · Audio · Knowledge · Quality"]
-        APP --> LABS
-    end
-
-    subgraph API["Application Layer"]
-        CLIENT["Core API Client"]
-        FAST["FastAPI"]
-        ROUTES["Projects · Assets · Jobs · Workbench · Integrations"]
-        CLIENT --> FAST --> ROUTES
-    end
-
-    subgraph CORE["Core Engine"]
-        DOMAIN["Domain"]
-        OPS["Operations"]
-        MEDIA["Media + Documents"]
-        ACQ["Acquisition"]
-        MODELS["Model Hub"]
-        PLUGINS["Plugin Runtime"]
-    end
-
-    subgraph STATE["Local State"]
-        DB[("SQLite + WAL")]
-        CAS[("Content-addressed storage")]
-        CACHE[("Operation cache")]
-    end
-
-    subgraph WORKER["Worker"]
-        QUEUE["Persistent leased jobs"]
-        EXEC["Processing executor"]
-    end
-
-    UI --> CLIENT
-    ROUTES --> DOMAIN
-    ROUTES --> OPS
-    ROUTES --> ACQ
-    ROUTES --> MODELS
-    ROUTES --> PLUGINS
-
-    OPS --> MEDIA
-
-    ROUTES --> DB
-    OPS --> DB
-    OPS --> CAS
-    OPS --> CACHE
-
-    ROUTES --> QUEUE
-    QUEUE --> EXEC
-    EXEC --> OPS
-    EXEC --> MEDIA
-    EXEC --> CAS
-```
-
----
-
-## ✦ Repository Structure
-
-```text
-MediaSensei/
-├── apps/
-│   └── api/                 # FastAPI application
-│
-├── components/              # React UI
-├── lib/                     # Frontend/API utilities
-│
-├── packages/
-│   ├── core/                # Domain, jobs, storage, operations, media
-│   └── plugin-sdk/          # Plugin contracts
-│
-├── db/                      # Frontend/local DB bindings
-├── drizzle/                 # Frontend database definitions
-│
-├── docs/
-│   ├── architecture/        # Architecture documentation
-│   ├── adr/                 # Architecture decisions
-│   └── ...                  # Guides, integrations, releases
-│
-├── scripts/                 # Launchers, smoke tests, release tooling
-├── tests/                   # Backend, API and workflow tests
-├── public/                  # Static assets
-└── qa-evidence/             # Release QA evidence
-```
-
----
-
-## ✦ Visual Product Overview
-
-Add your strongest screenshots here.
-
-```html
-<div align="center">
-
-<img src="YOUR_SCREENSHOT_PATH" alt="MediaSensei Overview" width="850">
-
-<br><br>
-
-<img src="YOUR_DATA_LAB_SCREENSHOT" alt="MediaSensei Data Lab" width="42%">
-<img src="YOUR_LIBRARY_SCREENSHOT" alt="MediaSensei Library" width="42%">
-
-<br><br>
-
-<img src="YOUR_KNOWLEDGE_LAB_SCREENSHOT" alt="MediaSensei Knowledge Lab" width="42%">
-<img src="YOUR_JOB_SCREENSHOT" alt="MediaSensei Jobs" width="42%">
-
-</div>
-```
-
-### Recommended README visuals
-
-For the final version, I’d put these near the top:
-
-```text
-1. Hero / dashboard screenshot
-2. Architecture graph
-3. Data Lab screenshot
-4. Jobs / pipeline screenshot
-5. Knowledge Lab / RAG screenshot
-6. Short demo GIF
-```
-
----
-
-## ✦ Quick Start
+## Quick Start
 
 ### Requirements
 
-* **Python 3.12+**
-* **Node.js 22.13+**
-* Node 24 LTS recommended
-* At least **5 GB** free space for setup
-* At least **2 GB** free workspace disk during processing
-* Internet access for initial dependency installation
+- Python **3.12+**.
+- Node.js **22.13+**; Node 24 is used in the configured CI workflow.
+- Internet access for initial dependency installation.
+- At least **5 GiB free space** for first Windows setup.
+- Available memory and processing headroom; the worker pauses below **2 GiB free disk** or **512 MiB available memory**.
 
-### Windows
+### Windows: one-click startup
 
-```bat
-start.bat
-```
-
-or double-click:
+Extract the project into a permanent, writable folder and double-click:
 
 ```text
 MediaSensei-Windows.bat
 ```
 
-### macOS / Linux
+`start.bat` also starts the Windows launcher. With Windows App Installer (`winget`) available, setup checks prerequisites, installs missing runtimes when needed, attempts native media-tool setup, prepares the private environment, and builds the frontend. Installers may request system permission.
+
+```text
+Check requirements → Install dependencies → Build
+                   → Start API + worker + web
+                   → Check readiness → Open browser
+```
+
+Open **[http://127.0.0.1:3000](http://127.0.0.1:3000)** if the browser does not open automatically. API health is available at **[http://127.0.0.1:8000/health](http://127.0.0.1:8000/health)**, and the local API reference at **[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)**.
+
+| Action | Launcher |
+|---|---|
+| Start | `MediaSensei-Windows.bat` |
+| Stop services | `Stop-MediaSensei-Windows.bat` |
+| Back up | `Backup-MediaSensei.bat` |
+| Restore into a new folder | `Restore-MediaSensei.bat` |
+
+Logs are stored in `.mediasensei-launcher/logs/`. If native-tool installation fails, table workflows can still run; the affected media operations need their tools installed before use.
+
+### macOS and Linux
+
+Install Python and Node.js, then run:
 
 ```sh
 sh start.sh
 ```
 
-On macOS:
+The macOS launcher `MediaSensei-macOS.command` is also included. Native media, OCR, credential storage, and speech capabilities depend on the platform and installed tools. Windows-specific adapters do not provide identical functionality on every OS.
 
-```text
-MediaSensei-macOS.command
-```
+## Supported Formats
 
-can also be used after allowing it to open.
+| Category | Formats / requirements |
+|---|---|
+| Images | JPG/JPEG, PNG, WebP, BMP, TIF/TIFF, GIF. |
+| Documents | TXT, Markdown, PDF, DOCX, HTML/HTM. |
+| Tables | CSV, TSV, JSON, JSONL/NDJSON, Parquet, XLSX, SQLite, DuckDB. |
+| Audio | WAV, MP3, FLAC, M4A, OGG, AAC; supported processing requires FFmpeg/ffprobe. |
+| Video | MP4, MOV, MKV, WebM, AVI, M4V; supported processing requires FFmpeg/ffprobe. |
+| Archives | ZIP, subject to supported content and archive limits. |
+| OCR | Tesseract and supported Windows inbox fallback. |
+| Provider imports | Optional Hugging Face / Kaggle adapters, with their access requirements. |
 
-The launcher:
+## Configuration & Working Limits
 
-```text
-Create virtual environment
-        ↓
-Install dependencies
-        ↓
-Initialize configuration
-        ↓
-Build frontend
-        ↓
-Start FastAPI
-        ↓
-Start worker
-        ↓
-Start frontend
-        ↓
-Health checks
-        ↓
-Open MediaSensei
-```
+The launcher creates `.env` from `.env.example`. Environment variables override file settings. Keep the real `.env` private.
 
-The application opens at:
+| Variable | Default | Purpose |
+|---|---|---|
+| `MEDIASENSEI_WORKSPACE` | `.mediasensei-workspace` | Catalog, objects, jobs, and generated data. |
+| `MEDIASENSEI_API_PORT` | `8000` | Local API port. |
+| `MEDIASENSEI_WEB_PORT` | `3000` | Browser interface port. |
+| `MEDIASENSEI_STARTUP_TIMEOUT_SECONDS` | `180` | Readiness allowance. |
+| `NEXT_PUBLIC_CORE_API_URL` | Launcher-derived | Browser API origin; origin changes require a rebuild. |
+| `MEDIASENSEI_CORS_ORIGINS` | `[]` | Additional approved browser origins. |
+| `MEDIASENSEI_MAX_UPLOAD_BYTES` | `2147483648` | General upload ceiling. |
+| `MEDIASENSEI_ZIP_MAX_FILES` | `20000` | Archive entry ceiling. |
+| `MEDIASENSEI_ZIP_MAX_TOTAL_BYTES` | `21474836480` | Expanded ZIP content ceiling. |
 
-**http://127.0.0.1:3000**
+Optional overrides are available for `MEDIASENSEI_FFMPEG`, `MEDIASENSEI_FFPROBE`, and `MEDIASENSEI_TESSERACT`.
 
-Logs:
+**Tabular inspection and transformations are bounded to 200,000 rows, 256 MiB source files, and a 1 GiB decoded-data allowance.** The general upload ceiling does not make every format processable at that size. Split or query larger sources into bounded extracts before import.
 
-```text
-.mediasensei-launcher/logs/
-```
+## Backup, Restore & Storage
 
----
+Backups preserve committed SQLite state and stored content, with checksums for verification. The Windows restore tool writes a new workspace directory and can activate it without deleting the old workspace. Native OS credentials are not included; re-save provider connections when their workspace location changes.
 
-## ✦ Development Mode
+System provides storage usage and project-manifest downloads. A manifest is an inventory, not a backup of dataset bytes. Stored objects can be shared by originals, versions, outputs, and caches—do not delete them manually.
 
-### Windows
+## Security & Data Handling
 
-```bat
-start-dev.bat
-```
+- Local processing and remote acquisition have separate permissions.
+- Supported saved secrets use the native OS credential store.
+- Uploads and archives are checked for supported formats, empty content, unsafe paths, corruption, and configured limits.
+- Original file objects are retained rather than silently overwritten.
+- Plugin trust is explicit and tied to source fingerprints.
 
-### macOS / Linux
+Python plugins are executable code. Review them before granting trust; a subprocess boundary is not a complete operating-system sandbox.
 
-```sh
-sh start-dev.sh
-```
+The API binds to loopback and has no multi-user authentication boundary. **Do not expose the API or frontend directly to untrusted networks.** Exports, retrieval bundles, fitted vocabularies, and backups can contain source information; handle them according to the privacy of the underlying data.
 
-Stop the application with:
+See [SECURITY.md](SECURITY.md) for reporting and security boundaries.
 
-```sh
-python3 scripts/mediasensei_launcher.py stop
-```
+## Development & Testing
 
-Windows also accepts:
+Use `start-dev.bat` on Windows or `sh start-dev.sh` on macOS/Linux for development startup.
 
-```powershell
-python scripts/mediasensei_launcher.py stop
-```
-
----
-
-## ✦ Supported Formats
-
-| Category     | Supported                                                   |
-| ------------ | ----------------------------------------------------------- |
-| 🖼️ Images   | JPG/JPEG, PNG, WebP, BMP, TIF/TIFF, GIF                     |
-| 📄 Documents | TXT, MD, Markdown, PDF, DOCX, HTML/HTM                      |
-| 🎵 Audio     | WAV, MP3, FLAC, M4A, OGG, AAC                               |
-| 🎬 Video     | MP4, MOV, MKV, WebM, AVI, M4V                               |
-| 📊 Tables    | CSV, TSV, JSON, JSONL/NDJSON, Parquet, XLSX, SQLite, DuckDB |
-| 📦 Archives  | ZIP                                                         |
-| 👁️ OCR      | Tesseract + Windows inbox OCR fallback                      |
-| 🤗 Providers | Hugging Face / Kaggle adapters                              |
-
-Audio/video processing requires **FFmpeg and ffprobe** on `PATH`.
-
-Provider integrations are optional.
-
----
-
-## ✦ Data Limits
-
-| Limit                        |      Default |
-| ---------------------------- | -----------: |
-| Table page size              |     200 rows |
-| Transform row ceiling        | 200,000 rows |
-| Parquet processing ceiling   |      256 MiB |
-| Maximum upload               |        2 GiB |
-| Maximum ZIP entries          |       20,000 |
-| Maximum expanded ZIP content |       20 GiB |
-
-These limits are ceilings rather than recommended dataset sizes.
-
-Large datasets may require substantially more memory and temporary disk space.
-
----
-
-## ✦ Configuration
-
-Copy:
-
-```text
-.env.example
-```
-
-to:
-
-```text
-.env
-```
-
-The launcher performs this automatically.
-
-| Variable                              | Default                  | Purpose                                          |
-| ------------------------------------- | ------------------------ | ------------------------------------------------ |
-| `MEDIASENSEI_WORKSPACE`               | `.mediasensei-workspace` | Metadata, objects, derivatives, jobs and exports |
-| `MEDIASENSEI_API_PORT`                | `8000`                   | FastAPI port                                     |
-| `MEDIASENSEI_WEB_PORT`                | `3000`                   | Browser port                                     |
-| `MEDIASENSEI_STARTUP_TIMEOUT_SECONDS` | `180`                    | Startup readiness allowance                      |
-| `NEXT_PUBLIC_CORE_API_URL`            | launcher-derived         | Browser API base                                 |
-| `MEDIASENSEI_CORS_ORIGINS`            | `[]`                     | Additional approved browser origins              |
-| `MEDIASENSEI_MAX_UPLOAD_BYTES`        | `2147483648`             | 2 GiB upload ceiling                             |
-| `MEDIASENSEI_ZIP_MAX_FILES`           | `20000`                  | ZIP entry ceiling                                |
-| `MEDIASENSEI_ZIP_MAX_TOTAL_BYTES`     | `21474836480`            | Expanded ZIP content ceiling                     |
-
-### Health
-
-```text
-GET http://127.0.0.1:8000/health
-```
-
-Also available under:
-
-```text
-/api/v1/health
-```
-
-### OpenAPI
-
-```text
-http://127.0.0.1:8000/docs
-```
-
----
-
-## ✦ Testing
-
-Install development dependencies:
-
-### Windows
-
-```powershell
-.venv\Scripts\python -m pip install -e ".[dev,image,data]" -c requirements-lock.txt
-```
-
-### macOS / Linux
+Install development extras using the private environment's Python:
 
 ```sh
-.venv/bin/python -m pip install -e '.[dev,image,data]' -c requirements-lock.txt
+python -m pip install -e ".[dev,image,data]" -c requirements-lock.txt
+npm ci
 ```
 
-Run:
+Run the standard checks:
 
 ```sh
-npm test
 npm run lint
+npm test
 npm run build
+python -m ruff check apps packages scripts tests
+```
+
+For browser coverage:
+
+```sh
 npx playwright install chromium
 npm run test:e2e
 ```
 
-Python checks:
+Native-media coverage depends on available tools. CI is configured for Windows, Linux, and macOS; a configured job is not a guarantee that every native adapter works on each platform.
 
-```sh
-.venv/bin/python -m ruff check apps packages scripts tests
-```
-
-The test suite covers:
-
-* Startup
-* API contracts
-* Real processing flows
-* Malformed uploads
-* ZIP traversal
-* ZIP CRC failures
-* ZIP size limits
-* Persistence
-* Original and derived downloads
-* Workflow behavior
-* Browser error recovery
-
-FFmpeg integration is skipped when the required binaries are unavailable.
-
-CI is configured for Windows, Linux and macOS.
-
----
-
-## ✦ 2.0.0-rc.1 Release Evidence
-
-The documented release verification reports:
-
-| Verification                |          Result |
-| --------------------------- | --------------: |
-| Backend tests               | **186 passing** |
-| Client contract checks      |           **8** |
-| Production browser checks   |          **41** |
-| API / worker restart checks |           **8** |
-| Clean wheel checks          |           **6** |
-| TypeScript                  |          Passed |
-| Lint                        |          Passed |
-| Ruff                        |          Passed |
-| Production frontend build   |          Passed |
-| Source-package verification |          Passed |
-
-These figures describe the documented release evidence.
-
-They do **not** establish:
-
-* Full macOS native-media certification
-* Full Linux native-media certification
-* Authenticated remote-provider certification
-* Multi-user server readiness
-
-See [QA_REPORT.md](QA_REPORT.md), [docs/batch-4.md](docs/batch-4.md), and [docs/2.0-status.md](docs/2.0-status.md).
-
----
-
-## ✦ Release & Deployment
-
-Create a release verification bundle with:
-
-```sh
-npm run release:check
-npm run release:bundle
-node scripts/run-python.mjs scripts/release.py checksums
-```
-
-Release bundles include:
-
-* Source
-* Tests
-* Configuration examples
-* CI configuration
-* Launchers
-
-Generated frontend output, dependencies, local environments, logs and user data are excluded.
-
----
-
-## ✦ Deployment Boundary
-
-MediaSensei is designed for:
-
-> **A trusted, single-user local workstation.**
-
-The API currently:
-
-* Has no user authentication
-* Intentionally binds to loopback
-* Should not be exposed directly to the public internet
-
-A shared or server deployment would require:
-
-```text
-Authentication
-+
-TLS
-+
-Reverse proxy
-+
-Request limits / timeouts
-+
-Backups
-+
-Worker supervision
-```
-
-See [SECURITY.md](SECURITY.md).
-
----
-
-## ✦ Data Lab Example
-
-```mermaid
-flowchart LR
-    A[Import Dataset] --> B[Inspect]
-    B --> C[Profile Columns]
-    C --> D[Build Operations]
-    D --> E[Preview]
-    E --> F[Run]
-    F --> G[Checkpoint]
-    G --> H[Create Version]
-    H --> I[Export]
-```
-
-Typical workflow:
-
-1. Import CSV, Excel or Parquet.
-2. Inspect rows and columns.
-3. Profile columns.
-4. Build an operation workflow.
-5. Preview a sample.
-6. Run the workflow on the worker.
-7. Create a named dataset version.
-8. Export the dataset or reproducibility bundle.
-
-Snapshots store references rather than copying unchanged data.
-
-Imported source assets are not overwritten.
-
----
-
-## ✦ Python SDK
-
-MediaSensei exposes a reusable Python workbench.
+### Python workbench example
 
 ```python
 from mediasensei.operations import Workbench
 
 workbench = Workbench(".mediasensei-workspace")
-
 dataset = workbench.dataset("DATASET_ID")
 
 preview = workbench.preview(
     dataset["id"],
     "fill_missing",
-    {
-        "columns": ["income"],
-        "strategy": "median",
-    },
+    {"columns": ["income"], "strategy": "median"},
 )
 
 job = workbench.enqueue(
     dataset["id"],
-    [
-        {
-            "operation": "fill_missing",
-            "parameters": {
-                "columns": ["income"],
-                "strategy": "median",
-            },
-        }
-    ],
+    [{
+        "operation": "fill_missing",
+        "parameters": {"columns": ["income"], "strategy": "median"},
+    }],
     dataset["revision"],
 )
 ```
 
-The public workbench and worker share the same operation execution implementation.
+Use this against an existing compatible working dataset and an appropriate split. The core operation implementation is shared by the API and worker.
 
----
+## Documentation
 
-## ✦ CLI
-
-Search available operations:
-
-```sh
-mediasensei operation search "heat map"
-```
-
-Run an operation:
-
-```sh
-mediasensei operation run DATASET_ID profile
-```
-
-Generated Python / notebook workflows use the recorded operation and library versions for reproducible replay.
-
----
-
-## ✦ Core Design Principles
-
-| Principle                       | Meaning                                                      |
-| ------------------------------- | ------------------------------------------------------------ |
-| **Local first**                 | Data and processing stay on the user's machine by default    |
-| **Immutable inputs**            | Imported source bytes are never silently replaced            |
-| **Explicit state**              | Jobs, revisions, checkpoints and failures remain inspectable |
-| **Reproducible work**           | Export workflows, versions and lineage—not only final files  |
-| **Policy before remote access** | External acquisition requires explicit project permission    |
-| **Extensible by contract**      | Plugins use versioned interfaces and explicit trust          |
-
----
-
-## ✦ Current Boundaries
-
-The current architecture is optimized for the local MVP / release-candidate boundary.
-
-Areas still evolving include:
-
-* Larger-scale multi-user processing
-* More extensive catalog pagination
-* Further decomposition of large UI/API modules
-* Broader native-media certification
-* Authenticated remote-provider certification
-* Stronger OS-level plugin sandboxing
-
-See the current release documentation before treating unreleased functionality as production-complete.
-
----
-
-## ✦ Documentation
-
-| Topic                         | Link                                               |
-| ----------------------------- | -------------------------------------------------- |
-| Release status                | [docs/2.0-status.md](docs/2.0-status.md)           |
-| Batch 1 verification          | [docs/batch-1.md](docs/batch-1.md)                 |
-| Batch 4 certification         | [docs/batch-4.md](docs/batch-4.md)                 |
-| Integrations                  | [docs/integrations.md](docs/integrations.md)       |
-| Data Workbench                | [docs/media-workbench.md](docs/media-workbench.md) |
-| Architecture                  | [docs/architecture/](docs/architecture/)           |
-| Architecture decision records | [docs/adr/](docs/adr/)                             |
-| QA Report                     | [QA_REPORT.md](QA_REPORT.md)                       |
-| Security                      | [SECURITY.md](SECURITY.md)                         |
-| Engineering report            | [docs/audit-1.0.2.md](docs/audit-1.0.2.md)         |
-
----
-
-## ✦ Why MediaSensei?
-
-MediaSensei is built around a simple idea:
-
-> **Data preparation should be reproducible infrastructure, not a pile of disconnected scripts.**
-
-The platform connects:
-
-```text
-Raw Files
-   ↓
-Persistent Ingestion
-   ↓
-Multimodal Processing
-   ↓
-Structured Datasets
-   ↓
-Retrieval / RAG
-   ↓
-Model Preparation
-   ↓
-Versioned Workflows
-   ↓
-Reproducible Exports
-```
-
-That makes MediaSensei useful as a bridge between:
-
-**data engineering → multimodal processing → retrieval → AI/ML experimentation**
-
----
+| Topic | Guide |
+|---|---|
+| Setup, imports, recovery | [Getting started](GETTING_STARTED.md) |
+| Data and media workflows | [Media workbench](docs/media-workbench.md) |
+| Models, connections, Playground, voices | [Integrations](docs/integrations.md) |
+| API and CLI | [Interfaces](docs/interfaces.md) |
+| Extension development | [Plugins](docs/plugins.md) |
+| Contribution process | [Contributing](CONTRIBUTING.md) |
+| Security boundaries | [Security](SECURITY.md) |
 
 ## License
 
-MediaSensei is released under the **Apache License 2.0**.
+**Copyright © 2026 Cyanex.**
 
-See [LICENSE](LICENSE).
+MediaSensei is source-available under the **[MediaSensei Community Non-Commercial License v1.0](LICENSE)**.
+
+Personal, educational, academic, research, evaluation, hobby, and other **non-commercial** use is permitted subject to that license. Commercial use—including qualifying internal use by a for-profit business, paid services, commercial redistribution, and hosted/SaaS offerings—requires prior written authorization or a separate commercial license from Cyanex.
+
+Contributions are subject to Section 7. Third-party components retain their own licenses; the MediaSensei license applies only to material Cyanex is authorized to license. The companion dataset has its own licensing terms.
+
+**Commercial licensing:** [maliksaad277@email.com](mailto:maliksaad277@email.com) · [Cyanex on GitHub](https://github.com/Cyanex1702)
+
+---
 
 <div align="center">
 
-### MediaSensei
-
-**Local-first multimodal data engineering**
-
-Built around **reproducibility · inspectable state · practical AI workflows**
+**MediaSensei** · Local control · Inspectable state · Reproducible datasets
 
 </div>

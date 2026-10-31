@@ -25,6 +25,8 @@ import {
   XCircle,
 } from "lucide-react";
 
+import WorkspaceStorage from "@/components/workbench/workspace-storage";
+import DataContracts from "@/components/workbench/data-contracts";
 import DataLab from "@/components/workbench/data-lab";
 import { ThemePicker } from "@/components/workbench/theme-picker";
 import { LibraryInspector } from "@/components/workbench/library-inspector";
@@ -40,6 +42,7 @@ import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import {
   api,
+  request,
   ApiError,
   contentUrl,
   datasetExportDownloadUrl,
@@ -98,7 +101,7 @@ const navigationGroups: { label: string; items: View[] }[] = [
   { label: "Build & deliver", items: ["Workflows", "Versions", "Exports", "Jobs"] },
   { label: "Tools & settings", items: ["Model Hub", "Connections", "Playground", "Voices", "Documentation", "System"] },
 ];
-type Health = { status: string; version: string; workspace: string };
+type Health = { status: string; version: string; workspace: string; processing_paused?: boolean; resource_warnings?: string[] };
 
 type Notice = { kind: "success" | "error" | "info"; text: string } | null;
 
@@ -136,6 +139,10 @@ function assetIcon(asset: Asset) {
 }
 
 export default function MediaSenseiApp() {
+  const [importChoice, setImportChoice] = useState<{file: string; kind: string; names: string[]; resolve: (value: {kind: string; name: string; allText?: boolean} | null) => void} | null>(null);
+  const [sourceName, setSourceName] = useState("");
+  const [reviewDelimited, setReviewDelimited] = useState(false);
+  const [keepText, setKeepText] = useState(false);
   const [requestedOperation, setRequestedOperation] = useState("");
   const [drawerOpen, setDrawerOpen] = useState(false);
   const openOperation = (id: string) => {
@@ -151,6 +158,10 @@ export default function MediaSenseiApp() {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [filter, setFilter] = useState("");
+  const [collections, setCollections] = useState<{id:string;name:string;query:string;modality:string}[]>([]);
+  const [collectionName, setCollectionName] = useState("");
+  const [collectionsReady, setCollectionsReady] = useState(false);
+  useEffect(()=>{let live=true;setCollections([]);setCollectionsReady(false);setCollectionName("");if(projectId)request<{items:typeof collections}>(`/workspace/projects/${projectId}/collections`).then(r=>{if(live){setCollections(r.items);setCollectionsReady(true)}}).catch(()=>{if(live)setCollections([])});return()=>{live=false}},[projectId]);
   const [libraryPage, setLibraryPage] = useState(0);
   const [libraryType, setLibraryType] = useState("all"),
     [libraryLayout, setLibraryLayout] = useState("grid");
@@ -355,7 +366,25 @@ export default function MediaSenseiApp() {
         const fileValue = files[index];
         setUploadStatus(`Uploading ${index + 1}/${files.length}: ${fileValue.name}`);
         try {
-          const result = await api.upload(projectId, fileValue);
+          let source: {kind: string; name: string; allText?: boolean} | undefined;
+          if (/\.(xlsx|sqlite|sqlite3|db|duckdb)$/i.test(fileValue.name)) {
+            const body = new FormData(); body.append("file", fileValue);
+            const choices = await request<{kind: string; names: string[]}>("/import-options", {method: "POST", body});
+            setSourceName(choices.names[0]);
+            const selectedSource = await new Promise<{kind: string; name: string; allText?: boolean} | null>(resolve => setImportChoice({file: fileValue.name, ...choices, resolve}));
+            setImportChoice(null);
+            if (!selectedSource) { failures.push(`${fileValue.name}: import cancelled`); continue; }
+            source = selectedSource;
+          }
+          if (reviewDelimited && /\.(csv|tsv)$/i.test(fileValue.name)) {
+            setSourceName(fileValue.name.toLowerCase().endsWith(".tsv") ? "\t" : ",");
+            setKeepText(false);
+            const choice = await new Promise<{kind: string; name: string; allText?: boolean} | null>(resolve => setImportChoice({file: fileValue.name, kind: "delimiter", names: [",", ";", "\t", "|"], resolve}));
+            setImportChoice(null);
+            if (!choice) { failures.push(`${fileValue.name}: import cancelled`); continue; }
+            source = choice;
+          }
+          const result = await api.upload(projectId, fileValue, source);
           succeeded += 1;
           if (Number(result.skipped_count) > 0) {
             const skipped = result.skipped as Array<{ name: string; reason: string }>;
@@ -425,6 +454,25 @@ export default function MediaSenseiApp() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      {importChoice && <div style={{position:"fixed",inset:0,background:"#0008",zIndex:100,display:"grid",placeItems:"center"}}>
+        <section role="dialog" aria-modal="true" aria-labelledby="source-title" className="data-lab rounded-lg border bg-background p-6 shadow-xl" style={{maxWidth:520,width:"90%"}} onKeyDown={event=>{
+            if(event.key === "Escape") importChoice.resolve(null);
+            if(event.key === "Tab") {
+              const controls=Array.from(event.currentTarget.querySelectorAll<HTMLElement>("button,select,input"));
+              const first=controls[0],last=controls[controls.length-1];
+              if(event.shiftKey && document.activeElement === first){event.preventDefault();last?.focus()}
+              else if(!event.shiftKey && document.activeElement === last){event.preventDefault();first?.focus()}
+            }
+          }}>
+          <h2 id="source-title">Choose the {importChoice.kind} to import</h2>
+          <p>{importChoice.file}</p>
+          <label>Source<select autoFocus aria-label="Import source" value={sourceName} onChange={e=>setSourceName(e.target.value)}>{importChoice.names.map(name=><option key={name} value={name}>{name === "\t" ? "Tab" : name}</option>)}</select></label>
+          {importChoice.kind === "delimiter" && <label><input type="checkbox" checked={keepText} onChange={e=>setKeepText(e.target.checked)}/>Keep all columns as text (preserve identifiers and leading zeros)</label>}
+          <p>Only this source will be imported. Your original file is preserved.</p>
+          <div className="flex gap-2"><Button onClick={()=>importChoice.resolve({kind:importChoice.kind,name:sourceName,allText:keepText && importChoice.kind === "delimiter"})}>Import selected source</Button><Button variant="outline" onClick={()=>importChoice.resolve(null)}>Cancel</Button></div>
+        </section>
+      </div>}
+
       <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur">
         <div className="mx-auto flex max-w-[1500px] items-center gap-4 px-5 py-3">
           <div className="flex min-w-0 items-center gap-3">
@@ -495,6 +543,7 @@ export default function MediaSenseiApp() {
           </div>
         </aside>
         <main className="sensei-workspace-main space-y-5 p-5">
+          {health?.processing_paused && <div role="alert" className="lab-alert"><strong>Processing is paused to protect your workspace.</strong> {health.resource_warnings?.join(" ")} Free resources, refresh, and resume paused jobs in Jobs.</div>}
           {notice && (
             <div
               className={`flex items-start gap-2 rounded-xl border p-3 text-sm ${
@@ -586,6 +635,7 @@ export default function MediaSenseiApp() {
           {hasProject && ["Model Hub", "Connections", "Playground", "Voices"].includes(view) && <Integrations key={`${projectId}-${view}`} projectId={projectId} view={view} assets={assets} />}
           {view === "Documentation" && <Documentation onOperation={openOperation} />}
 
+          {hasProject && view === "Overview" && <label className="lab-check"><input type="checkbox" checked={reviewDelimited} disabled={busy} onChange={e=>setReviewDelimited(e.target.checked)}/>Choose CSV/TSV delimiter and preserve text identifiers before upload</label>}
           {hasProject && view === "Overview" && (
             <>
               <section className="sensei-workflow-guide" aria-label="Dataset preparation steps">
@@ -696,6 +746,7 @@ export default function MediaSenseiApp() {
             </>
           )}
 
+          {hasProject && view === "Library" && <section className="data-lab lab-panel"><h2>Saved Library collections</h2><p>Reuse filename/hash search and modality filters. Matching assets update as the Library changes.</p><div className="lab-toolbar"><label>Collection name<input aria-label="Collection name" maxLength={100} value={collectionName} onChange={e=>setCollectionName(e.target.value)}/></label><Button disabled={!collectionsReady || !collectionName.trim()} onClick={()=>void request<{id:string;name:string;query:string;modality:string}>(`/workspace/projects/${projectId}/collections`,{method:"POST",body:JSON.stringify({name:collectionName.trim(),query:filter,modality:libraryType})}).then(c=>{if(activeProject.current !== projectId)return;setCollections(current=>[...current,c]);setCollectionName("")}).catch(e=>setNotice({kind:"error",text:errorMessage(e)}))}>Save current filters</Button></div>{collections.map(c=><div key={c.id} className="lab-toolbar"><Button variant="outline" onClick={()=>{setFilter(c.query);setLibraryType(c.modality);setLibraryPage(0)}}>{c.name}</Button><button aria-label={`Delete collection ${c.name}`} onClick={()=>void request(`/workspace/projects/${projectId}/collections/${c.id}`,{method:"DELETE"}).then(()=>{if(activeProject.current === projectId)setCollections(current=>current.filter(item=>item.id!==c.id))}).catch(e=>setNotice({kind:"error",text:errorMessage(e)}))}>Delete collection</button></div>)}</section>}
           {hasProject && view === "Library" && (
             <Card>
               <CardHeader>
@@ -855,6 +906,7 @@ export default function MediaSenseiApp() {
                 onRefresh={() => refreshProject(projectId)}
               />
             )}
+          {hasProject && view === "Quality" && <DataContracts key={projectId} projectId={projectId} />}
           {hasProject && view === "Quality" && (
             <div className="grid gap-4 lg:grid-cols-2">
               {view === "Quality" && (
@@ -994,6 +1046,7 @@ export default function MediaSenseiApp() {
             </div>
           )}
 
+          {view === "System" && <WorkspaceStorage projectId={projectId} />}
           {view === "System" && (
             <div className="grid gap-4 lg:grid-cols-2">
               <Card>

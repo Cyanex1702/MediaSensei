@@ -1,176 +1,404 @@
-                                 Apache License
-                           Version 2.0, January 2004
-                        http://www.apache.org/licenses/
+# MediaSensei Community Non-Commercial License v1.0
 
-   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+Copyright (c) 2026 Cyanex
 
-   1. Definitions.
+This MediaSensei Community Non-Commercial License ("License") governs the use, modification, and distribution of the software, source code, documentation, assets, and other materials of the MediaSensei project made available under this License (collectively, the "Software").
 
-      "License" shall mean the terms and conditions for use, reproduction,
-      and distribution as defined by Sections 1 through 9 of this document.
+By using, copying, modifying, or distributing the Software, You agree to the terms of this License.
 
-      "Licensor" shall mean the copyright owner or entity authorized by
-      the copyright owner that is granting the License.
+## 1. Definitions
 
-      "Legal Entity" shall mean the union of the acting entity and all
-      other entities that control, are controlled by, or are under common
-      control with that entity. For the purposes of this definition,
-      "control" means (i) the power, direct or indirect, to cause the
-      direction or management of such entity, whether by contract or
-      otherwise, or (ii) ownership of fifty percent (50%) or more of the
-      outstanding shares, or (iii) beneficial ownership of such entity.
+**"Copyright Holder"** means Cyanex.
 
-      "You" (or "Your") shall mean an individual or Legal Entity
-      exercising permissions granted by this License.
+**"You"** means any individual or legal entity exercising rights under this License.
 
-      "Source" form shall mean the preferred form for making modifications,
-      including but not limited to software source code, documentation
-      source, and configuration files.
+**"Non-Commercial Use"** means use that is not primarily intended for, directed toward, or connected with monetary compensation, revenue generation, commercial advantage, or the operation of a for-profit business.
 
-      "Object" form shall mean any form resulting from mechanical
-      transformation or translation of a Source form, including but
-      not limited to compiled object code, generated documentation,
-      and conversions to other media types.
+**"Commercial Use"** includes, without limitation:
 
-      "Work" shall mean the work of authorship, whether in Source or
-      Object form, made available under the License, as indicated by a
-      copyright notice that is included in or attached to the work
-      (an example is provided in the Appendix below).
+- selling, licensing, renting, leasing, or otherwise charging for the Software;
+- offering the Software, or functionality substantially derived from it, as a paid product, service, subscription, hosted service, cloud service, or Software-as-a-Service (SaaS);
+- incorporating the Software into a commercial product or paid service;
+- using the Software to provide paid services, consulting, development, hosting, support, or other services to third parties;
+- using the Software as part of the internal operations of a for-profit business where it provides material business or commercial benefit;
+- distributing the Software as part of a product or service for which payment or other commercial consideration is received;
+- using the Software primarily to generate advertising, subscription, transaction, licensing, or other revenue;
+- using the Software to gain a direct or indirect commercial advantage; or
+- otherwise using the Software for commercial gain.
 
-      "Derivative Works" shall mean any work, whether in Source or Object
-      form, that is based on (or derived from) the Work and for which the
-      editorial revisions, annotations, elaborations, or other modifications
-      represent, as a whole, an original work of authorship. For the purposes
-      of this License, Derivative Works shall not include works that remain
-      separable from, or merely link (or bind by name) to the interfaces of,
-      the Work and Derivative Works thereof.
+Receiving voluntary donations that are not required in exchange for access to the Software does not, by itself, constitute Commercial Use.
 
-      "Contribution" shall mean any work of authorship, including
-      the original version of the Work and any modifications or additions
-      to that Work or Derivative Works thereof, that is intentionally
-      submitted to Licensor for inclusion in the Work by the copyright owner
-      or by an individual or Legal Entity authorized to submit on behalf of
-      the copyright owner. For the purposes of this definition, "submitted"
-      means any form of electronic, verbal, or written communication sent
-      to the Licensor or its representatives, including but not limited to
-      communication on electronic mailing lists, source code control systems,
-      and issue tracking systems that are managed by, or on behalf of, the
-      Licensor for the purpose of discussing and improving the Work, but
-      excluding communication that is conspicuously marked or otherwise
-      designated in writing by the copyright owner as "Not a Contribution."
+## 2. Grant of Permission
 
-      "Contributor" shall mean Licensor and any individual or Legal Entity
-      on behalf of whom a Contribution has been received by Licensor and
-      subsequently incorporated within the Work.
+Subject to the terms of this License, Cyanex grants You a worldwide, royalty-free, non-exclusive, non-transferable license to:
 
-   2. Grant of Copyright License. Subject to the terms and conditions of
-      this License, each Contributor hereby grants to You a perpetual,
-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-      copyright license to reproduce, prepare Derivative Works of,
-      publicly display, publicly perform, sublicense, and distribute the
-      Work and such Derivative Works in Source or Object form.
+1. use and run the Software for personal, educational, academic, research, evaluation, hobby, and other Non-Commercial Uses;
+2. inspect and study the source code;
+3. modify the Software for Non-Commercial Use;
+4. create derivative works based on the Software for Non-Commercial Use;
+5. contribute modifications, fixes, improvements, documentation, or other changes to the Software; and
+6. copy and redistribute the Software or modified versions of the Software solely for Non-Commercial Use.
 
-   3. Grant of Patent License. Subject to the terms and conditions of
-      this License, each Contributor hereby grants to You a perpetual,
-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-      (except as stated in this section) patent license to make, have made,
-      use, offer to sell, sell, import, and otherwise transfer the Work,
-      where such license applies only to those patent claims licensable
-      by such Contributor that are necessarily infringed by their
-      Contribution(s) alone or by combination of their Contribution(s)
-      with the Work to which such Contribution(s) was submitted. If You
-      institute patent litigation against any entity (including a
-      cross-claim or counterclaim in a lawsuit) alleging that the Work
-      or a Contribution incorporated within the Work constitutes direct
-      or contributory patent infringement, then any patent licenses
-      granted to You under this License for that Work shall terminate
-      as of the date such litigation is filed.
+No rights are granted for Commercial Use except as expressly authorized in writing by Cyanex.
 
-   4. Redistribution. You may reproduce and distribute copies of the
-      Work or Derivative Works thereof in any medium, with or without
-      modifications, and in Source or Object form, provided that You
-      meet the following conditions:
+## 3. Conditions on Redistribution
 
-      (a) You must give any other recipients of the Work or
-          Derivative Works a copy of this License; and
+If You copy, redistribute, publish, or otherwise make the Software or a modified version available to others, You must:
 
-      (b) You must cause any modified files to carry prominent notices
-          stating that You changed the files; and
+- include this License in its entirety;
+- preserve all copyright, attribution, authorship, and legal notices;
+- clearly indicate if You have modified the Software;
+- not imply that Your modified version is an official version approved or endorsed by Cyanex unless You have written permission to do so; and
+- distribute the Software only under terms consistent with this License.
 
-      (c) You must retain, in the Source form of any Derivative Works
-          that You distribute, all copyright, patent, trademark, and
-          attribution notices from the Source form of the Work,
-          excluding those notices that do not pertain to any part of
-          the Derivative Works; and
+You may not impose additional terms that grant recipients Commercial Use rights to the Software.
 
-      (d) If the Work includes a "NOTICE" text file as part of its
-          distribution, then any Derivative Works that You distribute must
-          include a readable copy of the attribution notices contained
-          within such NOTICE file, excluding those notices that do not
-          pertain to any part of the Derivative Works, in at least one
-          of the following places: within a NOTICE text file distributed
-          as part of the Derivative Works; within the Source form or
-          documentation, if provided along with the Derivative Works; or,
-          within a display generated by the Derivative Works, if and
-          wherever such third-party notices normally appear. The contents
-          of the NOTICE file are for informational purposes only and
-          do not modify the License. You may add Your own attribution
-          notices within Derivative Works that You distribute, alongside
-          or as an addendum to the NOTICE text from the Work, provided
-          that such additional attribution notices cannot be construed
-          as modifying the License.
+## 4. Commercial Use
 
-      You may add Your own copyright statement to Your modifications and
-      may provide additional or different license terms and conditions
-      for use, reproduction, or distribution of Your modifications, or
-      for any such Derivative Works as a whole, provided Your use,
-      reproduction, and distribution of the Work otherwise complies with
-      the conditions stated in this License.
+Commercial Use of the Software is prohibited unless You have received prior written authorization or a separate commercial license from Cyanex.
 
-   5. Submission of Contributions. Unless You explicitly state otherwise,
-      any Contribution intentionally submitted for inclusion in the Work
-      by You to the Licensor shall be under the terms and conditions of
-      this License, without any additional terms or conditions.
-      Notwithstanding the above, nothing herein shall supersede or modify
-      the terms of any separate license agreement you may have executed
-      with Licensor regarding such Contributions.
+A commercial license may grant rights not provided by this License, including, but not limited to:
 
-   6. Trademarks. This License does not grant permission to use the trade
-      names, trademarks, service marks, or product names of the Licensor,
-      except as required for reasonable and customary use in describing the
-      origin of the Work and reproducing the content of the NOTICE file.
+- commercial deployment;
+- internal business use;
+- SaaS or hosted use;
+- incorporation into commercial products;
+- redistribution in commercial products;
+- paid customer services;
+- proprietary modifications;
+- sublicensing;
+- enterprise use;
+- commercial support; or
+- other negotiated commercial rights.
 
-   7. Disclaimer of Warranty. Unless required by applicable law or
-      agreed to in writing, Licensor provides the Work (and each
-      Contributor provides its Contributions) on an "AS IS" BASIS,
-      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-      implied, including, without limitation, any warranties or conditions
-      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
-      PARTICULAR PURPOSE. You are solely responsible for determining the
-      appropriateness of using or redistributing the Work and assume any
-      risks associated with Your exercise of permissions under this License.
+Commercial licensing terms, including fees, royalties, revenue-sharing arrangements, usage limits, support terms, or other conditions, may be negotiated separately.
 
-   8. Limitation of Liability. In no event and under no legal theory,
-      whether in tort (including negligence), contract, or otherwise,
-      unless required by applicable law (such as deliberate and grossly
-      negligent acts) or agreed to in writing, shall any Contributor be
-      liable to You for damages, including any direct, indirect, special,
-      incidental, or consequential damages of any character arising as a
-      result of this License or out of the use or inability to use the
-      Work (including but not limited to damages for loss of goodwill,
-      work stoppage, computer failure or malfunction, or any and all
-      other commercial damages or losses), even if such Contributor
-      has been advised of the possibility of such damages.
+Permission granted to one person or organization does not grant Commercial Use rights to any other person or organization.
 
-   9. Accepting Warranty or Additional Liability. While redistributing
-      the Work or Derivative Works thereof, You may choose to offer,
-      and charge a fee for, acceptance of support, warranty, indemnity,
-      or other liability obligations and/or rights consistent with this
-      License. However, in accepting such obligations, You may act only
-      on Your own behalf and on Your sole responsibility, not on behalf
-      of any other Contributor, and only if You agree to indemnify,
-      defend, and hold each Contributor harmless for any liability
-      incurred by, or claims asserted against, such Contributor by reason
-      of your accepting any such warranty or additional liability.
+For commercial licensing inquiries:
 
-   END OF TERMS AND CONDITIONS
+**Email:** maliksaad277@email.com  
+**GitHub:** https://github.com/Cyanex1702
+
+## 5. No Trademark or Branding Rights
+
+This License does not grant permission to use Cyanex's names, trademarks, service marks, logos, project names, branding, visual identity, or other identifiers except as reasonably necessary to identify the origin of the Software.
+
+You may not use such identifiers in a way that suggests sponsorship, affiliation, approval, certification, or endorsement by Cyanex without prior written permission.
+
+You may not present a fork, derivative work, modified version, or independent project as an official Cyanex product unless expressly authorized in writing.
+
+## 6. Ownership
+
+The Software is licensed, not sold.
+
+Except for the limited rights expressly granted under this License, all rights, title, and interest in and to the Software remain with Cyanex and any applicable third-party copyright holders.
+
+Nothing in this License transfers ownership of the Software or any associated intellectual property rights to You.
+
+All rights not expressly granted under this License are reserved.
+
+## 7. Contributions
+
+Unless otherwise agreed in writing, by intentionally submitting a contribution for inclusion in the Software, You represent that:
+
+- You have the legal right to submit the contribution;
+- the contribution does not knowingly violate the intellectual property rights of another party; and
+- You are authorized to grant the rights described in this section.
+
+You grant Cyanex a perpetual, worldwide, non-exclusive, irrevocable, royalty-free license to:
+
+- use;
+- reproduce;
+- modify;
+- adapt;
+- distribute;
+- publish;
+- publicly display;
+- publicly perform;
+- sublicense;
+- incorporate;
+- commercially exploit; and
+- relicense
+
+Your contribution as part of the Software, related projects, derivative works, commercial editions, proprietary editions, or other products and services.
+
+This includes the right for Cyanex to distribute Your contribution under commercial, proprietary, open-source, source-available, or other licensing terms.
+
+You retain ownership of any copyright You hold in Your contribution.
+
+Submitting a contribution does not entitle You to compensation, royalties, ownership in the Software, ownership in Cyanex, commercial licensing revenue, or any other financial benefit unless separately agreed in writing.
+
+## 8. Forks and Modified Versions
+
+You may create and distribute forks or modified versions of the Software for Non-Commercial Use, subject to this License.
+
+Modified versions must not:
+
+- be presented as the original or official Software;
+- falsely claim endorsement or approval by Cyanex;
+- use Cyanex's trademarks, project names, logos, or branding in a misleading manner;
+- remove copyright, attribution, authorship, or licensing notices;
+- grant rights that exceed those provided by this License; or
+- be used for Commercial Use without written authorization from Cyanex.
+
+You are responsible for clearly distinguishing modified versions from official versions of the Software.
+
+Cyanex is not responsible for forks, modifications, derivative works, unofficial builds, or redistributions created by third parties.
+
+## 9. Prohibited Uses
+
+Except where separately authorized in writing by Cyanex, You may not:
+
+- use the Software for Commercial Use;
+- sell, sublicense, rent, lease, or commercially redistribute the Software;
+- offer the Software as a paid hosted service or SaaS product;
+- include the Software in a paid commercial product or service;
+- use the Software to provide paid services to customers;
+- remove, conceal, or alter copyright, attribution, authorship, or licensing notices;
+- misrepresent the origin or authorship of the Software;
+- falsely claim ownership of portions of the Software You did not create;
+- use Cyanex's identity, branding, project names, or logos to imply endorsement;
+- circumvent or attempt to circumvent the restrictions of this License;
+- knowingly assist another person or organization in violating this License; or
+- grant commercial rights to the Software that You do not possess.
+
+## 10. Third-Party Components
+
+The Software may contain, include, bundle, interface with, or depend upon third-party:
+
+- software;
+- libraries;
+- frameworks;
+- models;
+- datasets;
+- fonts;
+- APIs;
+- media;
+- documentation;
+- assets; or
+- other materials.
+
+Those third-party materials remain subject to their respective licenses, terms, and conditions.
+
+This License applies only to material for which Cyanex has the legal authority to grant rights.
+
+Nothing in this License overrides the licensing terms of third-party components.
+
+You are responsible for complying with any applicable third-party licenses when using or distributing the Software.
+
+## 11. Separate Commercial Licensing
+
+Cyanex may offer separate commercial licenses for the Software.
+
+A commercial license may provide additional rights, including rights for:
+
+- companies;
+- organizations;
+- startups;
+- commercial developers;
+- SaaS providers;
+- hosting providers;
+- enterprise users;
+- agencies;
+- consultants;
+- paid service providers; or
+- other commercial users.
+
+Commercial licenses may contain separate fees, royalties, usage limits, deployment restrictions, support arrangements, redistribution rights, or other negotiated terms.
+
+A commercial license must be granted in writing by Cyanex.
+
+## 12. Alternative Licensing
+
+Cyanex may offer or distribute the Software under different licenses or licensing models.
+
+Nothing in this License restricts Cyanex's ability to:
+
+- commercially license the Software;
+- dual-license or multi-license the Software;
+- release proprietary editions;
+- release enterprise editions;
+- release future versions under different terms;
+- provide additional permissions;
+- enter into private licensing agreements;
+- provide paid hosting;
+- provide paid development;
+- provide paid support;
+- provide consulting services; or
+- otherwise commercially exploit the Software.
+
+A separate written agreement between You and Cyanex may override specific provisions of this License for You.
+
+## 13. Future Versions of This License
+
+Cyanex may publish revised or updated versions of this License.
+
+Unless explicitly stated otherwise, Software released under a specific version of this License remains governed by that version.
+
+The publication of a new version of this License does not automatically change the terms governing earlier releases.
+
+Cyanex may choose to release future versions of the Software under a newer version of this License or under different licensing terms.
+
+## 14. Compliance with Law
+
+You are responsible for ensuring that Your use of the Software complies with all laws, regulations, rules, and legal obligations applicable to You.
+
+This License does not grant permission to use the Software in any manner prohibited by applicable law.
+
+No provision of this License requires any party to violate applicable law.
+
+## 15. Termination
+
+Your rights under this License terminate automatically if You materially violate its terms.
+
+Upon termination, You must immediately cease exercising the rights granted under this License.
+
+Where reasonably practicable, You must also cease distributing unauthorized copies or modified versions of the Software.
+
+Termination does not affect:
+
+- rights previously granted by Cyanex to other parties;
+- separate commercial licenses;
+- provisions of this License that by their nature should survive termination; or
+- any rights or remedies available to Cyanex under applicable law.
+
+Sections relating to ownership, contributions, disclaimers, limitations of liability, commercial restrictions, and other provisions intended to survive termination will continue to apply.
+
+Cyanex may, at its sole discretion, restore Your rights after a violation has been corrected.
+
+## 16. Enforcement
+
+Failure by Cyanex to immediately enforce any provision of this License does not waive Cyanex's right to enforce that provision later.
+
+No delay, omission, or failure to exercise a right under this License constitutes a permanent waiver of that right.
+
+A waiver is effective only if expressly provided in writing by Cyanex.
+
+## 17. Disclaimer of Warranty
+
+THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, CYANEX DISCLAIMS ALL WARRANTIES, INCLUDING, WITHOUT LIMITATION, WARRANTIES OF:
+
+- MERCHANTABILITY;
+- FITNESS FOR A PARTICULAR PURPOSE;
+- TITLE;
+- NON-INFRINGEMENT;
+- ACCURACY;
+- RELIABILITY;
+- SECURITY;
+- PERFORMANCE;
+- AVAILABILITY;
+- COMPATIBILITY; AND
+- FITNESS FOR ANY PARTICULAR USE.
+
+THERE IS NO WARRANTY THAT THE SOFTWARE WILL BE ERROR-FREE, SECURE, UNINTERRUPTED, COMPLETE, COMPATIBLE WITH ANY PARTICULAR SYSTEM, OR SUITABLE FOR ANY PARTICULAR PURPOSE.
+
+YOU USE THE SOFTWARE ENTIRELY AT YOUR OWN RISK.
+
+## 18. Limitation of Liability
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL CYANEX, THE COPYRIGHT HOLDER, CONTRIBUTORS, AUTHORS, OR DISTRIBUTORS BE LIABLE FOR ANY:
+
+- DIRECT DAMAGES;
+- INDIRECT DAMAGES;
+- INCIDENTAL DAMAGES;
+- SPECIAL DAMAGES;
+- EXEMPLARY DAMAGES;
+- PUNITIVE DAMAGES;
+- CONSEQUENTIAL DAMAGES;
+- LOSS OF PROFITS;
+- LOSS OF REVENUE;
+- LOSS OF DATA;
+- LOSS OF BUSINESS;
+- LOSS OF GOODWILL;
+- LOSS OF OPPORTUNITY;
+- LOSS OF SAVINGS;
+- BUSINESS INTERRUPTION;
+- SERVICE INTERRUPTION;
+- SECURITY INCIDENT;
+- DATA CORRUPTION; OR
+- OTHER LOSS OR DAMAGE
+
+ARISING OUT OF OR RELATED TO THE SOFTWARE, THIS LICENSE, OR THE USE OR INABILITY TO USE THE SOFTWARE.
+
+THIS LIMITATION APPLIES WHETHER THE CLAIM IS BASED ON CONTRACT, TORT, NEGLIGENCE, STRICT LIABILITY, STATUTE, OR ANY OTHER LEGAL THEORY, EVEN IF CYANEX HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+## 19. Indemnification
+
+To the maximum extent permitted by applicable law, You are responsible for Your use, modification, redistribution, deployment, and operation of the Software.
+
+You agree that Cyanex is not responsible for claims arising from unauthorized, unlawful, misleading, or otherwise improper use of the Software by You.
+
+Nothing in this section creates an indemnification obligation where such an obligation would be prohibited by applicable law.
+
+## 20. Severability
+
+If any provision of this License is determined by a court or other competent authority to be invalid, illegal, or unenforceable, that provision shall be interpreted or limited to the minimum extent necessary to make it enforceable where possible.
+
+The remaining provisions of this License shall continue in full force and effect.
+
+## 21. No Waiver
+
+Failure by Cyanex to enforce any provision of this License does not constitute a waiver of:
+
+- that provision;
+- any other provision; or
+- Cyanex's right to enforce the provision in the future.
+
+Any waiver must be expressly provided in writing.
+
+## 22. No Agency or Partnership
+
+Nothing in this License creates any:
+
+- partnership;
+- joint venture;
+- employment relationship;
+- agency relationship;
+- franchise relationship; or
+- other formal business relationship
+
+between You and Cyanex.
+
+You have no authority to represent, bind, or make commitments on behalf of Cyanex.
+
+## 23. Entire License
+
+This License constitutes the complete licensing terms governing the rights granted under the MediaSensei Community Non-Commercial License v1.0 unless You and Cyanex enter into a separate written agreement.
+
+No oral statement, informal conversation, social media post, issue comment, pull request discussion, README statement, documentation statement, email discussion, or other communication modifies this License unless Cyanex expressly agrees to the modification in writing.
+
+## 24. Reserved Rights
+
+All rights not expressly granted under this License are reserved by Cyanex.
+
+No implied licenses or rights are granted.
+
+Possession of a copy of the Software does not grant rights beyond those expressly provided in this License.
+
+## 25. Contact
+
+For commercial licensing, commercial deployment, special permissions, exceptions, partnerships, enterprise licensing, or other licensing inquiries:
+
+**Copyright Holder:** Cyanex
+
+**Email:** maliksaad277@email.com
+
+**GitHub:** https://github.com/Cyanex1702
+
+---
+
+# MediaSensei Community Non-Commercial License v1.0
+
+Copyright (c) 2026 Cyanex
+
+Personal, educational, academic, research, evaluation, hobby, and other non-commercial use is permitted subject to the terms of this License.
+
+Commercial use is not permitted without prior written authorization or a separate commercial license from Cyanex.
+
+Commercial licensing inquiries:
+
+Email: maliksaad277@email.com  
+GitHub: https://github.com/Cyanex1702

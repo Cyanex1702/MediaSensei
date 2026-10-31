@@ -33,8 +33,8 @@ try {
     }
   }
   await page.getByRole('button',{name:'Library',exact:true}).first().click();
-  await page.locator('main').getByText('field notes.txt',{exact:true}).waitFor();
-  if(fixtures) { await page.getByText('photo.png',{exact:true}).waitFor(); await page.getByText('zip notes.txt',{exact:true}).waitFor(); }
+  await page.getByTitle('field notes.txt',{exact:true}).waitFor();
+  if(fixtures) { await page.getByTitle('photo.png',{exact:true}).waitFor(); await page.getByTitle('zip notes.txt',{exact:true}).waitFor(); }
   await page.getByRole('button',{name:'Knowledge Lab',exact:true}).first().click();
   const knowledge = page.locator('.batch-lab');
   await knowledge.getByRole('navigation',{name:'Lab sections'}).getByRole('button',{name:'Prepare',exact:true}).click();

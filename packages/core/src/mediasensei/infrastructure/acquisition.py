@@ -218,12 +218,18 @@ class AcquisitionService:
     ) -> None:
         candidate_id = str(candidate["id"])
         license_name = str(candidate.get("license") or "").strip().casefold()
-        if spec.allowed_licenses and license_name not in spec.allowed_licenses:
-            self._decide(candidate_id, _rejection(AcquisitionReason.LICENSE_NOT_ALLOWED, "license-filter"))
+        if spec.allowed_licenses and not license_allowed(license_name, spec.allowed_licenses):
+            self._decide(
+                candidate_id, _rejection(AcquisitionReason.LICENSE_NOT_ALLOWED, "license-filter")
+            )
             return
         domain = (urllib.parse.urlsplit(str(candidate["source_url"])).hostname or "").casefold()
-        if spec.allowed_domains and not any(domain == d or domain.endswith("." + d) for d in spec.allowed_domains):
-            self._decide(candidate_id, _rejection(AcquisitionReason.POLICY_BLOCKED, "source-domain-filter"))
+        if spec.allowed_domains and not any(
+            domain == d or domain.endswith("." + d) for d in spec.allowed_domains
+        ):
+            self._decide(
+                candidate_id, _rejection(AcquisitionReason.POLICY_BLOCKED, "source-domain-filter")
+            )
             return
         if (
             candidate.get("declared_width") and int(candidate["declared_width"]) < spec.min_width
@@ -402,7 +408,9 @@ class AcquisitionService:
 
     def _check_control(self, run: dict[str, Any]) -> None:
         if self.repository.project_policy(str(run["project_id"])) == "local_only":
-            self.repository.set_run_state(str(run["id"]), AcquisitionRunState.CANCELLED, reason="External access disabled")
+            self.repository.set_run_state(
+                str(run["id"]), AcquisitionRunState.CANCELLED, reason="External access disabled"
+            )
             raise AcquisitionCancelled("External access disabled for this project")
         if run["state"] == AcquisitionRunState.PAUSED.value:
             raise AcquisitionPaused("Acquisition paused at a persisted candidate checkpoint")
@@ -533,3 +541,30 @@ def _safe_filename(
         str(candidate.get("title") or "acquired-image"),
     )
     return f"{stem.strip('.-_')[:120] or 'acquired-image'}{suffix}"
+
+
+def license_allowed(actual: str, allowed: tuple[str, ...]) -> bool:
+    """Compare provider CC labels without broadening BY into NC/ND/SA licenses."""
+
+    def canonical(value: str) -> tuple[str, str | None]:
+        value = value.strip().casefold()
+        match = re.fullmatch(
+            r"(?:cc[- ]?)?(cc0|zero|pdm|by(?:[- ](?:nc|nd|sa))*)(?:[ -]+(\d+(?:\.\d+)*))?", value
+        )
+        if not match:
+            return value, None
+        family = match.group(1).replace(" ", "-")
+        family = (
+            "cc0"
+            if family in {"zero", "cc0"}
+            else "cc-" + family
+            if family.startswith("by")
+            else family
+        )
+        return family, match.group(2)
+
+    family, version = canonical(actual)
+    return any(
+        family == expected and (required is None or required == version)
+        for expected, required in map(canonical, allowed)
+    )

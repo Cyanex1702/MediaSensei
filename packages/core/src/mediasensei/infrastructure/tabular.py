@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import csv
 import hashlib
 import json
 import math
@@ -62,7 +63,12 @@ class TabularEngine:
         source_sha256: str, source_format: TabularFormat, options: dict[str, Any] | None = None
     ) -> str:
         payload = json.dumps(
-            {"sha256": source_sha256, "format": source_format.value, "options": options or {}},
+            {
+                "sha256": source_sha256,
+                "format": source_format.value,
+                "options": options or {},
+                "parser_version": 2,
+            },
             sort_keys=True,
             separators=(",", ":"),
         )
@@ -77,7 +83,15 @@ class TabularEngine:
         options: dict[str, Any] | None = None,
     ) -> TabularAnalysis:
         clean_options = self._validated_options(options or {})
+        if Path(source).stat().st_size > 256 * 1024**2:
+            raise ValueError(
+                "Tabular inspection supports source files up to 256 MiB. Split the source into bounded files before importing."
+            )
         table = self._read(Path(source), source_format, clean_options)
+        if table.num_rows > 200_000 or table.nbytes > 1024**3:
+            raise ValueError(
+                "Tabular inspection supports at most 200,000 rows and 1 GiB decoded data. Split or query the source before importing."
+            )
         if not table.column_names:
             raise ValueError("The imported table has no columns")
         normalized = self._store_parquet(table)
@@ -235,7 +249,7 @@ class TabularEngine:
 
     def _read(self, path: Path, source_format: TabularFormat, options: dict[str, Any]):
         if source_format == TabularFormat.XLSX:
-            frame = pd.read_excel(path, sheet_name=options.get("sheet", 0))
+            frame = pd.read_excel(path, sheet_name=options.get("sheet", 0), nrows=200_001)
             return pa.Table.from_pandas(frame, preserve_index=False)
         if source_format in {TabularFormat.SQLITE, TabularFormat.DUCKDB}:
             table_name = options.get("table") or self._first_table(path, source_format)
@@ -253,7 +267,7 @@ class TabularEngine:
                         raise ValueError(f"Unknown SQLite table: {table_name}")
                     return pa.Table.from_pandas(
                         pd.read_sql_query(
-                            f"SELECT * FROM {self._identifier(table_name)}", connection
+                            f"SELECT * FROM {self._identifier(table_name)} LIMIT 200001", connection
                         ),
                         preserve_index=False,
                     )
@@ -262,11 +276,40 @@ class TabularEngine:
                 if table_name not in names:
                     raise ValueError(f"Unknown DuckDB table: {table_name}")
                 return connection.execute(
-                    f"SELECT * FROM {self._identifier(table_name)}"
+                    f"SELECT * FROM {self._identifier(table_name)} LIMIT 200001"
                 ).to_arrow_table()
+        if source_format in {TabularFormat.CSV, TabularFormat.TSV}:
+            delimiter = options.get("delimiter") or (
+                "\t" if source_format == TabularFormat.TSV else ","
+            )
+            try:
+                with path.open("r", encoding="utf-8-sig", newline="") as stream:
+                    records = csv.reader(stream, delimiter=delimiter, strict=True)
+                    header = next(records, None)
+                    if not header or any(not name.strip() for name in header):
+                        raise ValueError("A non-empty header is required for every column")
+                    if len(set(header)) != len(header):
+                        raise ValueError(
+                            "Duplicate column names are not allowed; rename them before import"
+                        )
+                    for row in records:
+                        if row and len(row) != len(header):
+                            raise ValueError(
+                                f"Invalid delimited record ending at line {records.line_num}: "
+                                f"expected {len(header)} fields, found {len(row)}. "
+                                "Check the delimiter and quoting before importing."
+                            )
+            except (UnicodeError, csv.Error) as error:
+                raise ValueError(f"Cannot parse UTF-8 delimited file: {error}") from error
         readers: dict[TabularFormat, tuple[str, list[object]]] = {
-            TabularFormat.CSV: ("read_csv_auto(?, header=true)", []),
-            TabularFormat.TSV: ("read_csv_auto(?, header=true, delim='\\t')", []),
+            TabularFormat.CSV: (
+                "read_csv_auto(?, header=true, skip=0, delim=?, all_varchar=?)",
+                [options.get("delimiter", ","), options.get("all_text", False)],
+            ),
+            TabularFormat.TSV: (
+                "read_csv_auto(?, header=true, skip=0, delim=?, all_varchar=?)",
+                [options.get("delimiter", "\t"), options.get("all_text", False)],
+            ),
             TabularFormat.JSON: ("read_json_auto(?, format='array')", []),
             TabularFormat.JSONL: ("read_json_auto(?, format='newline_delimited')", []),
             TabularFormat.PARQUET: ("read_parquet(?)", []),
@@ -277,7 +320,7 @@ class TabularEngine:
             raise ValueError(f"Unsupported tabular format: {source_format}") from error
         with closing(duckdb.connect()) as connection:
             return connection.execute(
-                f"SELECT * FROM {source_sql}", [str(path), *extra]
+                f"SELECT * FROM {source_sql} LIMIT 200001", [str(path), *extra]
             ).to_arrow_table()
 
     @staticmethod
@@ -408,10 +451,19 @@ class TabularEngine:
 
     @staticmethod
     def _validated_options(options: dict[str, Any]) -> dict[str, Any]:
-        unknown = set(options) - {"sheet", "table"}
+        unknown = set(options) - {"sheet", "table", "delimiter", "all_text"}
         if unknown:
             raise ValueError(f"Unsupported import option(s): {', '.join(sorted(unknown))}")
         clean: dict[str, Any] = {}
+        if "delimiter" in options:
+            delimiter = options["delimiter"]
+            if delimiter not in {",", ";", "\t", "|"}:
+                raise ValueError("Choose comma, semicolon, tab or pipe as delimiter")
+            clean["delimiter"] = delimiter
+        if "all_text" in options:
+            if not isinstance(options["all_text"], bool):
+                raise ValueError("all_text must be a boolean")
+            clean["all_text"] = options["all_text"]
         if "sheet" in options and options["sheet"] is not None:
             sheet = options["sheet"]
             if not isinstance(sheet, (str, int)):
@@ -497,7 +549,9 @@ def register_tabular_processors(registry: ProcessorRegistry, catalog: Catalog) -
     def inspect_processor(item: WorkItem, parameters: dict[str, Any]) -> dict[str, Any]:
         source_format = TabularFormat(str(parameters["source_format"]))
         options = {
-            key: parameters[key] for key in ("sheet", "table") if parameters.get(key) is not None
+            key: parameters[key]
+            for key in ("sheet", "table", "delimiter", "all_text")
+            if parameters.get(key) is not None
         }
         analysis = engine.inspect(
             engine.store.resolve(item.input_ref),
@@ -524,7 +578,7 @@ def register_tabular_processors(registry: ProcessorRegistry, catalog: Catalog) -
 def tabular_processor_spec() -> ProcessorSpec:
     return ProcessorSpec(
         id="tabular.inspect",
-        version="1.0.0",
+        version="1.0.1",
         deterministic=True,
         cacheable=True,
         resource_hints=ResourceHints(

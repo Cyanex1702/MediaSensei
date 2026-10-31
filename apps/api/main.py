@@ -355,7 +355,14 @@ class AssetStateRequest(BaseModel):
 @app.get("/health")
 @app.get("/api/v1/health")
 def health() -> dict[str, object]:
-    return {"status": "ok", "version": __version__, "workspace": str(WORKSPACE)}
+    from mediasensei.domain.jobs import ResourceHints, RuntimeProfile
+    from mediasensei.infrastructure.scheduler import AdaptiveScheduler, HardwareProfile
+    hardware = HardwareProfile.detect(WORKSPACE)
+    decision = AdaptiveScheduler().decide(hardware, RuntimeProfile.BALANCED, ResourceHints())
+    return {"status": "ok", "version": __version__, "workspace": str(WORKSPACE),
+            "processing_paused": decision.paused_for_pressure,
+            "resource_warnings": list(decision.warnings),
+            "free_disk_bytes": hardware.free_disk_bytes}
 
 
 @app.get("/api/v1/projects")
@@ -896,6 +903,46 @@ def derive_media(project_id: str, payload: MediaDeriveRequest) -> dict[str, obje
     return _job_response(job)
 
 
+@app.post("/api/v1/import-options")
+def inspect_import_options(file: UploadFile) -> dict[str, object]:
+    """List source tables/sheets without adding anything to the workspace."""
+    import sqlite3
+    from contextlib import closing
+    try:
+        fmt = TabularFormat.from_filename(file.filename or "")
+    except ValueError as error:
+        raise HTTPException(422, detail={"code": "INVALID_IMPORT_SOURCE", "message": str(error)}) from error
+    temporary = _write_upload(file, max_bytes=min(settings.max_upload_bytes, 256 * 1024**2))
+    try:
+        if fmt == TabularFormat.SQLITE:
+            with closing(sqlite3.connect(temporary.as_uri() + "?mode=ro", uri=True)) as connection:
+                names = [row[0] for row in connection.execute("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' ORDER BY name")]
+            kind = "table"
+        elif fmt == TabularFormat.DUCKDB:
+            import duckdb
+            with closing(duckdb.connect(str(temporary), read_only=True)) as connection:
+                names = [row[0] for row in connection.execute("SHOW TABLES").fetchall()]
+            kind = "table"
+        elif fmt == TabularFormat.XLSX:
+            import openpyxl
+            with temporary.open("rb") as source:
+                workbook = openpyxl.load_workbook(source, read_only=True)
+                try:
+                    names = workbook.sheetnames
+                finally:
+                    workbook.close()
+            kind = "sheet"
+        else:
+            raise ValueError("Source selection is available for databases and Excel workbooks")
+        if not names:
+            raise ValueError("This file contains no importable tables or sheets")
+        return {"kind": kind, "names": names}
+    except Exception as error:
+        raise HTTPException(422, detail={"code": "INVALID_IMPORT_SOURCE", "message": str(error)}) from error
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
 @app.post("/api/v1/projects/{project_id}/tabular", status_code=202)
 def import_tabular_dataset(
     project_id: str,
@@ -903,6 +950,8 @@ def import_tabular_dataset(
     source_format: TabularFormat | None = None,
     sheet: str | None = None,
     table: str | None = None,
+    delimiter: str | None = None,
+    all_text: bool = False,
 ) -> dict[str, object]:
     _require_project(project_id)
     safe_name = Path(file.filename or "upload.csv").name
@@ -915,7 +964,13 @@ def import_tabular_dataset(
     temporary = _write_upload(file, max_bytes=settings.max_upload_bytes)
     try:
         stored = store.import_file(temporary)
-        options = {key: value for key, value in {"sheet": sheet, "table": table}.items() if value}
+        options = {key: value for key, value in {"sheet": sheet, "table": table, "delimiter": delimiter}.items() if value}
+        if all_text:
+            options["all_text"] = True
+        try:
+            options = TabularEngine._validated_options(options)
+        except ValueError as error:
+            raise HTTPException(422, detail={"code": "INVALID_IMPORT_OPTIONS", "message": str(error)}) from error
         asset_id = catalog.record_asset(
             project_id=project_id,
             sha256=stored.sha256,
@@ -2079,3 +2134,11 @@ app.include_router(multimodal_router)
 from .integrations import router as integrations_router
 
 app.include_router(integrations_router)
+
+from .contracts import router as contracts_router
+
+app.include_router(contracts_router)
+
+from .workspace import router as workspace_router
+
+app.include_router(workspace_router)

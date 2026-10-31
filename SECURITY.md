@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-This workbench is the MediaSensei 2.0 release candidate. Its local acceptance evidence is in docs/batch-4.md. Earlier 1.x and alpha snapshots are historical baselines; no maintenance or security-support promise is implied by their presence in the archive.
+MediaSensei 2.0 is a local single-user application. Security boundaries and reporting guidance are described below.
 
 ## Reporting a vulnerability
 

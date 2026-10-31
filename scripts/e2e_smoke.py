@@ -101,6 +101,14 @@ def run_smoke(*, api_only: bool = False, skip_build: bool = False) -> dict[str, 
         (fixture_dir / "table.csv").write_text("species,count\nfox,2\nowl,3\n")
         with zipfile.ZipFile(fixture_dir / "nested.zip", "w") as bundle:
             bundle.writestr("nested/zip notes.txt", "Foxes explore woodland habitats.")
+        import sqlite3
+        from contextlib import closing
+        with closing(sqlite3.connect(fixture_dir / "two.db")) as connection:
+            connection.execute("CREATE TABLE accounts(name TEXT)")
+            connection.execute("INSERT INTO accounts VALUES ('Alice')")
+            connection.execute("CREATE TABLE sales(amount INTEGER)")
+            connection.execute("INSERT INTO sales VALUES (999)")
+            connection.commit()
         environment["MEDIASENSEI_SMOKE_FIXTURES"] = str(fixture_dir)
         log_dir = Path(directory) / "logs"
         log_dir.mkdir()
@@ -192,6 +200,9 @@ def run_smoke(*, api_only: bool = False, skip_build: bool = False) -> dict[str, 
                 except SmokeFailure as error:
                     raise SmokeFailure(str(error) + "\n" + (log_dir / "web.log").read_text(errors="replace")[-8000:]) from error
                 subprocess.run([shutil.which("node") or "node", "scripts/browser-smoke.mjs"], cwd=ROOT, env=environment, check=True)
+                if os.environ.get("MEDIASENSEI_EXTENDED_QA") == "1":
+                    for script in ("scripts/product-acceptance.mjs", "scripts/batch-one-smoke.mjs"):
+                        subprocess.run([shutil.which("node") or "node", script], cwd=ROOT, env=environment, check=True)
                 if worker.poll() is not None:
                     raise SmokeFailure("Worker exited during integration tests")
             return {

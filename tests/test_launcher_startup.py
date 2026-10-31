@@ -14,6 +14,8 @@ from scripts import mediasensei_launcher as launcher
 def isolated_launcher(tmp_path, monkeypatch):
     root = tmp_path / 'folder with spaces'
     root.mkdir()
+    from types import SimpleNamespace
+    monkeypatch.setattr(launcher.shutil, 'disk_usage', lambda path: SimpleNamespace(free=20 * 1024**3))
     state = root / '.mediasensei-launcher'
     monkeypatch.setattr(launcher, 'ROOT', root)
     monkeypatch.setattr(launcher, 'STATE_DIR', state)

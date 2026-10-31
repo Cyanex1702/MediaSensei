@@ -102,12 +102,29 @@ class DiscoveryRegistry:
 
 class RuleBasedPromptPlanner:
     planner_id = "rule-based"
-    version = "1.0.1"
+    version = "1.0.2"
 
     def plan(self, prompt: str) -> AcquisitionSpec:
         clean = " ".join(prompt.split())
         if not clean:
             raise ValueError("An acquisition prompt cannot be empty")
+        if re.search(
+            r"\b(csv|datasets?|tabular|audio|videos?|documents?|pdfs?)\b", clean, re.IGNORECASE
+        ):
+            raise ValueError(
+                "Sources discovery currently collects images only. Use Connections for provider datasets or import local files in Library."
+            )
+        if re.search(r"\b(avoid|exclude|without|except)\b", clean, re.IGNORECASE):
+            raise ValueError(
+                "Exclusion instructions cannot be enforced automatically. Remove the exclusion and review candidates manually before using the dataset."
+            )
+        license_match = re.search(r"\b(cc0|cc-by-sa|cc-by)\s+only\b", clean, re.IGNORECASE)
+        licenses = (license_match.group(1).lower(),) if license_match else ()
+        if re.search(r"\b(licen[cs]e|copyright|commercial|public domain)\b", clean, re.IGNORECASE):
+            raise ValueError(
+                "Set licensing requirements using the explicit Allowed licenses field in the plan; free-text licensing is not supported."
+            )
+        clean = re.sub(r"[,;]?\s*\b(cc0|cc-by-sa|cc-by)\s+only\b", "", clean, flags=re.IGNORECASE)
         target_match = re.search(
             r"\b([\d,]+)\s+(?:usable\s+|accepted\s+)?(?:images?|photos?|photographs?|pictures?)\b",
             clean,
@@ -116,7 +133,8 @@ class RuleBasedPromptPlanner:
         if target_match is None:
             target_match = re.search(
                 r"\b(?:find|get|collect|acquire|want|need|download)\s+(?:me\s+)?([\d,]+)\b(?!\s*(?:px|pixels))",
-                clean, re.IGNORECASE,
+                clean,
+                re.IGNORECASE,
             )
         target = int(target_match.group(1).replace(",", "")) if target_match else 100
         dimensions = re.search(r"\b(\d{2,5})\s*[x×]\s*(\d{2,5})\b", clean)
@@ -141,6 +159,7 @@ class RuleBasedPromptPlanner:
             topic=topic,
             target=TargetSpec(TargetUnit.ACCEPTED_ASSETS, target),
             categories=categories,
+            allowed_licenses=licenses,
             queries=generate_queries(topic, categories),
             provider_ids=("wikimedia-commons", "openverse"),
             min_width=min_width,
@@ -202,7 +221,7 @@ class TargetYieldController:
 
 class MetadataRelevanceEvaluator:
     evaluator_id = "metadata-keyword"
-    version = "1.0.0"
+    version = "1.0.1"
 
     def evaluate(self, spec: AcquisitionSpec, candidate: dict[str, Any]) -> AcquisitionDecision:
         if spec.relevance_strategy == "disabled":
@@ -223,7 +242,7 @@ class MetadataRelevanceEvaluator:
             )
         expected = _keywords(" ".join((spec.topic, *spec.categories)))
         observed = _keywords(
-            " ".join(str(candidate.get(field) or "") for field in ("title", "description", "query"))
+            " ".join(str(candidate.get(field) or "") for field in ("title", "description"))
         )
         overlap = sorted(expected & observed)
         score = len(overlap) / max(1, min(5, len(expected)))
@@ -312,7 +331,9 @@ def generate_queries(topic: str, categories: tuple[str, ...] = ()) -> tuple[str,
 
 
 def _fallback_topic(prompt: str) -> str:
-    prompt = re.split(r"\b(?:at least|minimum|avoid|reject|include)\b", prompt, maxsplit=1, flags=re.IGNORECASE)[0]
+    prompt = re.split(
+        r"\b(?:at least|minimum|avoid|reject|include)\b", prompt, maxsplit=1, flags=re.IGNORECASE
+    )[0]
     clean = re.sub(
         r"\b(?:get|find|acquire|download|collect|me|please|i|want|need)\b",
         " ",

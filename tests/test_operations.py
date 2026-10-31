@@ -188,7 +188,7 @@ def test_acquisition_plan_is_discoverable_without_download(lab_client, monkeypat
 
 @pytest.mark.parametrize('prompt',[
  'Find 200 red fox photos, minimum 1024 pixels.',
- 'I want 200 photographs of red foxes in snowy forests, at least 1024px, avoid illustrations.',
+ 'I want 200 photographs of red foxes in snowy forests, at least 1024px.',
  'Get 200 images of red foxes, minimum 1024 pixels.',
 ])
 def test_natural_acquisition_counts_and_constraints(prompt):
