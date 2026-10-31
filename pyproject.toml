@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "mediasensei"
 version = "2.0.0-rc.2"
 description = "Local-first multimodal data engineering core"
-license = "Apache-2.0"
+license = "LicenseRef-MediaSensei-Community-NC-1.0"
 license-files = ["LICENSE"]
 readme = "README.md"
 requires-python = ">=3.12"

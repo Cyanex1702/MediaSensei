@@ -1,7 +1,0 @@
-Requirements are already up to date.
-Using the existing production build.
-Starting MediaSensei at http://127.0.0.1:3000/ ...
-Service logs: <project>\.mediasensei-launcher\logs
-Startup: api: <urlopen error timed out>; worker: running; web: HTTP 200
-Startup: api: HTTP 200; worker: running; web: HTTP 200
-MediaSensei is ready: web + API + worker are running.
