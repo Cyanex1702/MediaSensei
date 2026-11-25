@@ -14,7 +14,7 @@
 
 <img src="public/og.png" alt="MediaSensei — raw data to reliable datasets" width="100%">
 
-[Overview](#what-is-mediasensei) · [Capabilities](#capabilities) · [Quick start](#quick-start) · [Release changes](#whats-new-in-200-rc2) · [Example dataset](#companion-dataset-messy-retail-data) · [Documentation](#documentation)
+[Overview](#what-is-mediasensei) · [Tour](#visual-walkthrough) · [Architecture](#architecture) · [Capabilities](#capabilities) · [Quick start](#quick-start) · [Release changes](#whats-new-in-200-rc2) · [Example dataset](#companion-dataset-messy-retail-data) · [Documentation](#documentation)
 
 </div>
 
@@ -22,20 +22,34 @@
 
 ## What is MediaSensei?
 
-**MediaSensei is a local workspace for turning raw files into inspectable, reusable datasets.**
+MediaSensei is a local workbench for building a dataset you can explain and rebuild. A data scientist can import a spreadsheet, CSV, database table, or collection of media; inspect what arrived; clean and validate the working copy; and export the result with the operations that produced it. Projects keep source assets, jobs, and working revisions together.
 
-It brings tabular preparation, media processing, document retrieval, data acquisition, quality checks, lightweight local models, and reproducible workflows into one interface. Work is organized into projects, with a Library for source assets, dedicated labs for processing, and persistent jobs for execution.
+For a retail dataset, start by profiling the raw orders and looking for repeated rows, missing fields, and inconsistent types. Preview the cleanup, run it on the local worker, check the output against a saved quality contract, and save a version before exporting. If an operation produces the wrong result, you can return to an earlier version. The original file bytes stay in the Library's content-addressed store.
 
-A file import is the beginning of a workflow. You can inspect its structure, preview changes, run transformations, review failures, save a version, and export the result with its history. Original source bytes remain preserved in content-addressed storage.
+The same project can contain images, audio, video, and documents. Dedicated labs handle tasks such as image derivatives, FFmpeg-backed media processing, and retrieval over indexed documents. Sources has a separate workflow for planning and reviewing image acquisition before an authorized download.
 
-MediaSensei is useful for:
+## Visual walkthrough
 
-- **Data scientists** preparing and validating datasets before analysis or modeling.
-- **Researchers and students** exploring local tables, documents, images, audio, or video.
-- **Dataset builders** collecting and reviewing source material with provenance.
-- **Developers** reusing operations through the API, CLI, Python core, or plugin SDK.
+The synthetic demo imports 1,260 rows, identifies 60 duplicates, removes them, and saves a version of the 1,200-row result.
 
-It is designed for a **trusted, single-user workstation**. Processing stays local by default; remote acquisition and provider imports require explicit authorization.
+[Watch or download the video](https://raw.githubusercontent.com/Cyanex1702/MediaSensei/main/docs/assets/tour/MediaSensei_demo_video.mp4)
+
+![Profile showing 1,260 rows and 60 duplicates](docs/assets/tour/MediaSensei_02_profile_1260_rows_60_duplicates.png)
+
+<table>
+  <tr>
+    <td width="50%"><a href="docs/assets/tour/MediaSensei_01_library_import.png"><img src="docs/assets/tour/MediaSensei_01_library_import.png" alt="Library and source import"></a><br><strong>Library and source import</strong></td>
+    <td width="50%"><a href="docs/assets/tour/MediaSensei_03_remove_duplicates_operation.png"><img src="docs/assets/tour/MediaSensei_03_remove_duplicates_operation.png" alt="Remove duplicates operation"></a><br><strong>Remove duplicates operation</strong></td>
+  </tr>
+  <tr>
+    <td width="50%"><a href="docs/assets/tour/MediaSensei_04_after_dedup_1200_rows.png"><img src="docs/assets/tour/MediaSensei_04_after_dedup_1200_rows.png" alt="Profile after deduplication"></a><br><strong>Profile after deduplication</strong></td>
+    <td width="50%"><a href="docs/assets/tour/MediaSensei_05_immutable_version.png"><img src="docs/assets/tour/MediaSensei_05_immutable_version.png" alt="Saved immutable version"></a><br><strong>Saved immutable version</strong></td>
+  </tr>
+  <tr>
+    <td width="50%"><a href="docs/assets/tour/MediaSensei_06_correlation_heatmap.png"><img src="docs/assets/tour/MediaSensei_06_correlation_heatmap.png" alt="Correlation heatmap"></a><br><strong>Correlation heatmap</strong></td>
+    <td width="50%"><a href="docs/assets/tour/MediaSensei_07_command_palette.png"><img src="docs/assets/tour/MediaSensei_07_command_palette.png" alt="Command palette"></a><br><strong>Command palette</strong></td>
+  </tr>
+</table>
 
 ## Capabilities
 
@@ -182,6 +196,10 @@ Exports are designed to preserve more than final bytes: retain the dataset versi
 
 ## Companion Dataset: Messy Retail Data
 
+![MediaSensei recorded results](docs/assets/tour/MediaSensei_08_results_chart.png)
+
+Deduplication evidence for two separate datasets. The 1,260-row walkthrough is distinct from the larger companion retail dataset described below.
+
 **Messy Retail Data: Raw vs Clean Challenge** is a synthetic dataset created to demonstrate a practical MediaSensei workflow.
 
 It includes linked customer, product, and order tables, deliberately messy raw files, pre-corruption clean references, a SQLite database, a data dictionary, an issue ledger, a reproducible generator, and a starter notebook.
@@ -218,14 +236,22 @@ All records are synthetic. There are no real customers, transactions, stores, br
 
 ## Architecture
 
+![MediaSensei system architecture](docs/assets/tour/MediaSensei_00_architecture.png)
+
+The browser submits work through FastAPI. The API records a durable job in SQLite, and the local worker runs operations separately from the browser request. The catalog ties source objects, working revisions, and saved versions together. A preview helps choose an operation. The completed job records the operation against the working revision, and the export can include inputs and replay metadata.
+
 ```mermaid
 flowchart TD
     UI[React workbench] --> API[FastAPI]
     API --> Core[Python core and operation services]
+    API --> Jobs[Persisted job requests]
+    Jobs --> Catalog
     Core --> Catalog[SQLite catalog and persistent jobs]
     Core --> Objects[Content-addressed object storage]
     Worker[Local worker] --> Catalog
     Worker --> Objects
+    Worker --> Results[Working revisions and derivative assets]
+    Results --> API
     Worker --> Tools[Data, media, document and provider processors]
 ```
 
